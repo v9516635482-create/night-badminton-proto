@@ -479,6 +479,114 @@
     .ph-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
     .ph-sub { font-size: 14px; color: var(--text-3); line-height: 1.4; max-width: 280px; margin: 0 auto; }
 
+    /* ============== WALLET ============== */
+    .wallet { padding: 18px 14px 0; display: flex; flex-direction: column; gap: 10px; }
+    .wallet-card {
+      padding: 16px;
+      background: var(--card); border: 1px solid var(--card-border);
+      border-radius: 18px; box-shadow: var(--card-shadow);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      position: relative; overflow: hidden;
+    }
+    .wallet-card.deposit {
+      background: linear-gradient(135deg, rgba(255,179,71,0.12), rgba(255,126,95,0.16));
+      border-color: rgba(255,138,61,0.22);
+    }
+    .theme-dark .wallet-card.deposit {
+      background: linear-gradient(135deg, rgba(255,179,71,0.08), rgba(255,126,95,0.10));
+      border-color: rgba(255,138,61,0.18);
+    }
+    .wallet-card.abonement {
+      background: linear-gradient(135deg, rgba(221,88,197,0.08), rgba(114,56,230,0.12));
+      border-color: rgba(221,88,197,0.22);
+    }
+    .theme-dark .wallet-card.abonement {
+      background: linear-gradient(135deg, rgba(221,88,197,0.10), rgba(114,56,230,0.14));
+      border-color: rgba(221,88,197,0.22);
+    }
+    .wallet-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .wallet-icon {
+      width: 36px; height: 36px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; color: #fff;
+      flex-shrink: 0;
+    }
+    .wallet-icon.amber { background: var(--grad-amber); box-shadow: 0 4px 12px rgba(255,126,95,0.32); }
+    .wallet-icon.brand { background: var(--grad); box-shadow: 0 4px 12px rgba(221,88,197,0.32); }
+    .wallet-label { font-size: 11px; font-weight: 700; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; }
+    .wallet-value { font-size: 28px; font-weight: 800; letter-spacing: -0.8px; line-height: 1; font-variant-numeric: tabular-nums; }
+    .wallet-value .cur { font-size: 18px; color: var(--text-3); font-weight: 700; margin-left: 4px; }
+    .wallet-value .frac { color: var(--text-3); font-weight: 700; }
+    .wallet-sub { font-size: 12px; color: var(--text-3); margin-top: 6px; letter-spacing: -0.04px; font-weight: 500; }
+    .wallet-actions { display: flex; gap: 8px; margin-top: 14px; }
+    .wallet-btn {
+      flex: 1; padding: 11px 14px;
+      border: 0; border-radius: 12px;
+      font-family: var(--font); font-size: 13px; font-weight: 700;
+      letter-spacing: -0.1px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      transition: transform 0.1s;
+    }
+    .wallet-btn:active { transform: scale(0.97); }
+    .wallet-btn.primary {
+      background: var(--grad); color: #fff;
+      box-shadow: 0 4px 12px rgba(221,88,197,0.28);
+    }
+    .wallet-btn.primary.amber { background: var(--grad-amber); box-shadow: 0 4px 12px rgba(255,126,95,0.28); }
+    .wallet-btn.ghost {
+      background: rgba(255,255,255,0.5);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+    }
+    .theme-dark .wallet-btn.ghost { background: rgba(255,255,255,0.08); }
+
+    /* ============== EDIT PENCIL ON HERO ============== */
+    .edit-btn-inline {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 12px; background: var(--soft); border: 1px solid var(--border);
+      border-radius: 999px;
+      font-family: var(--font); font-size: 12px; font-weight: 600;
+      letter-spacing: -0.04px; color: var(--text);
+      cursor: pointer; margin-top: 10px;
+      transition: background 0.18s;
+    }
+    .edit-btn-inline:hover { background: var(--soft-2); }
+    .edit-btn-inline:active { transform: scale(0.96); }
+
+    /* ============== PROFILE EDIT SCREEN ============== */
+    .edit-section { padding: 18px 14px 0; }
+
+    /* ============== TOPUP / AMOUNT GRID ============== */
+    .amount-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 14px; }
+    .amount-pill {
+      padding: 18px 12px;
+      background: var(--card); border: 1px solid var(--card-border);
+      border-radius: 16px;
+      font-family: var(--font); cursor: pointer;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      text-align: center;
+      transition: transform 0.1s, background 0.18s;
+    }
+    .amount-pill:active { transform: scale(0.98); }
+    .amount-pill.selected {
+      background: var(--selected-bg);
+      box-shadow: 0 0 0 2px var(--selected-ring) inset, var(--card-shadow);
+      border-color: transparent;
+    }
+    .amount-val { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+    .amount-bonus { font-size: 11px; color: var(--success); font-weight: 600; margin-top: 4px; }
+    .balance-display {
+      margin: 12px 14px 0; padding: 16px;
+      background: linear-gradient(135deg, rgba(255,179,71,0.14), rgba(255,126,95,0.18));
+      border: 1px solid rgba(255,138,61,0.22);
+      border-radius: 18px;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      text-align: center;
+    }
+    .theme-dark .balance-display { background: linear-gradient(135deg, rgba(255,179,71,0.08), rgba(255,126,95,0.10)); }
+    .balance-lbl { font-size: 11px; font-weight: 700; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; }
+    .balance-val { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+
     .home-eyebrow { font-size: 11px; color: var(--text-3); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 22px 20px 6px; }
     .home-greeting { font-size: 28px; font-weight: 700; letter-spacing: -0.6px; padding: 0 20px 12px; line-height: 1.1; }
     .home-cta { padding: 0 14px; }
@@ -635,6 +743,14 @@
       tabPerson: (f) => f
         ? <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0v.5H4V20Z"/></svg>
         : <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.7"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/></svg>,
+      sun: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.5" stroke="currentColor" strokeWidth="1.7"/><path d="M10 2.5v2M10 15.5v2M17.5 10h-2M4.5 10h-2M15.3 4.7l-1.4 1.4M6.1 13.9l-1.4 1.4M15.3 15.3l-1.4-1.4M6.1 6.1L4.7 4.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/></svg>,
+      moon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M16.5 12.5A7 7 0 0 1 7.5 3.5a7 7 0 1 0 9 9Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/></svg>,
+      pencil: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11 3 4 10l-1 4 4-1 7-7-3-3Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
+      plus: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>,
+      coins: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><ellipse cx="9" cy="6" rx="6" ry="2.5" stroke="currentColor" strokeWidth="1.5"/><path d="M3 6v3c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V6M3 9v3c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V9" stroke="currentColor" strokeWidth="1.5"/></svg>,
+      ticket: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 6V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1a2 2 0 0 0 0 4v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1a2 2 0 0 0 0-4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M9 4v9" stroke="currentColor" strokeWidth="1.5" strokeDasharray="1.5 1.5"/></svg>,
+      cardLg: <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2.5" y="4.5" width="17" height="13" rx="2" stroke="currentColor" strokeWidth="1.7"/><path d="M2.5 8.5h17" stroke="currentColor" strokeWidth="1.7"/></svg>,
+      sbp: <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.6"/><path d="M11 5v6M11 11l4 3.5M11 11l-4 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
     };
 
     /* ========== SHARED COMPONENTS ========== */
@@ -653,10 +769,10 @@
 
     function TabBar({ active, onChange }) {
       const tabs = [
-        { id: 'home',    label: 'Главная',  icon: ICN.home },
-        { id: 'sched',   label: 'Запись',   icon: ICN.cal },
-        { id: 'club',    label: 'Клуб',     icon: ICN.shield },
-        { id: 'profile', label: 'Профиль',  icon: ICN.tabPerson },
+        { id: 'home',    label: 'Главная',     icon: ICN.home },
+        { id: 'sched',   label: 'Расписание',  icon: ICN.cal },
+        { id: 'club',    label: 'Клуб',        icon: ICN.shield },
+        { id: 'profile', label: 'Профиль',     icon: ICN.tabPerson },
       ];
       return (
         <div className="tab-bar">
@@ -1166,63 +1282,87 @@
     }
 
     /* ========== PROFILE SCREEN ========== */
-    function ProfileScreen({ nav, trainings }) {
-      const myUpcoming = trainings.filter(t => t.booked).slice(0, 2);
+    function ProfileScreen({ nav, profile, theme, setTheme, deposit, abonement, paymentMethods }) {
+      const userName = profile.name && profile.name.trim() ? profile.name : 'Вика Шаханина';
+      const userTg = profile.tg || '@vika_sh';
+      const initials = userName.split(' ').map(s => s[0]).slice(0,2).join('').toUpperCase() || 'ВШ';
+      const isDark = theme === 'dark';
+
       return (
         <React.Fragment>
           <StatusBar />
           <div className="nav">
-            <div style={{width: 40}} />
+            <button className="nav-btn" onClick={() => setTheme(isDark ? 'light' : 'dark')} aria-label="Переключить тему">
+              {isDark ? ICN.sun : ICN.moon}
+            </button>
             <div className="nav-title">Профиль</div>
             <button className="nav-btn">{ICN.settings}</button>
           </div>
           <div className="scroll">
             <div className="p-hero">
               <div className="p-hero-avatar-wrap">
-                <div className="p-hero-avatar">ВШ</div>
+                <div className="p-hero-avatar">{initials}</div>
                 <div className="level-chip">F–G</div>
               </div>
-              <div className="p-hero-name">Вика Шаханина</div>
-              <div className="p-hero-handle">@vika_sh · в клубе с июня 2026</div>
+              <div className="p-hero-name">{userName}</div>
+              <div className="p-hero-handle">{userTg} · в клубе с июня 2026</div>
+              <button className="edit-btn-inline" onClick={() => nav.push('profile-edit')}>
+                {ICN.pencil} Изменить профиль
+              </button>
             </div>
 
-            <div className="stats">
-              <div className="stat"><div className="stat-val">200<span className="cur"> ₽</span></div><div className="stat-lbl">Депозит</div></div>
-              <div className="stat"><div className="stat-val">47</div><div className="stat-lbl">Тренировок</div></div>
-              <div className="stat"><div className="stat-val">6<span className="cur"> / 8</span></div><div className="stat-lbl">Абонемент</div></div>
-            </div>
+            <div className="wallet">
+              <div className="wallet-card deposit">
+                <div className="wallet-head">
+                  <div className="wallet-icon amber">{ICN.coins}</div>
+                  <div className="wallet-label">Депозит</div>
+                </div>
+                <div className="wallet-value">{deposit.toLocaleString('ru-RU')}<span className="cur">₽</span></div>
+                <div className="wallet-sub">Списывается автоматически при оплате</div>
+                <div className="wallet-actions">
+                  <button className="wallet-btn primary amber" onClick={() => nav.push('topup')}>
+                    {ICN.plus} Пополнить
+                  </button>
+                </div>
+              </div>
 
-            <div className="promo-card" onClick={() => nav.switchTo('sched')}>
-              <div className="promo-body">
-                <div className="promo-eyebrow">Готовы перейти выше?</div>
-                <div className="promo-title">Прокачайте уровень до E с пакетом «8 занятий»</div>
-                <button className="promo-btn-inline">Подобрать {ICN.arrR}</button>
+              <div className="wallet-card abonement">
+                <div className="wallet-head">
+                  <div className="wallet-icon brand">{ICN.ticket}</div>
+                  <div className="wallet-label">Абонемент</div>
+                </div>
+                <div className="wallet-value">{abonement.remaining}<span className="frac"> / {abonement.total}</span></div>
+                <div className="wallet-sub">Занятий осталось · действует до {abonement.until}</div>
+                <div className="wallet-actions">
+                  <button className="wallet-btn primary" onClick={() => nav.push('buy-abonement')}>
+                    {ICN.plus} Продлить
+                  </button>
+                  <button className="wallet-btn ghost" onClick={() => nav.push('buy-abonement')}>
+                    Сменить пакет
+                  </button>
+                </div>
               </div>
             </div>
 
             <div className="section-head small">
-              <div className="section-title">Ближайшие записи</div>
-              <div className="section-meta">Все ({myUpcoming.length}) →</div>
+              <div className="section-title">Способы оплаты</div>
+              <div className="section-meta" style={{color: 'var(--brand)', cursor: 'pointer'}}>+ Добавить</div>
             </div>
             <div className="cards">
-              {myUpcoming.length === 0 ? (
-                <div className="placeholder" style={{padding: '24px'}}>
-                  <div className="ph-title">Записей пока нет</div>
-                  <div className="ph-sub">Запишитесь на тренировку из расписания</div>
-                </div>
-              ) : myUpcoming.map(t => {
-                const c = COACHES[t.coachId];
-                return (
-                  <div key={t.id} className="upcoming" onClick={() => nav.push('training', { trainingId: t.id })}>
-                    <div className="upc-date"><div className="upc-day">{RU_DAYS_SHORT[(new Date(t.date).getDay()+6)%7].toUpperCase()}</div><div className="upc-num">{t.date.split('-')[2]}</div></div>
-                    <div className="upc-body">
-                      <div className="upc-name">{t.name}{t.level ? ` · ${t.level}` : ''}</div>
-                      <div className="upc-meta">{t.loc} · {c.name}</div>
+              <div className="profile-row">
+                {paymentMethods.map((m, idx) => (
+                  <div key={m.id} className="row">
+                    <div className={`row-icon ${m.color}`}>{m.icon === 'card' ? ICN.cardLg : m.icon === 'sbp' ? ICN.sbp : ICN.cardIcon}</div>
+                    <div className="row-body">
+                      <div className="row-name">{m.name}</div>
+                      <div className="row-sub">{m.sub}</div>
                     </div>
-                    <div className="upc-time">{t.t}</div>
+                    {m.isDefault
+                      ? <span className="row-pill"><span className="ck"><svg width="7" height="7" viewBox="0 0 7 7" fill="none"><path d="m1.5 3.5 1 1L5.5 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></span>основной</span>
+                      : <span className="row-end">{ICN.chev}</span>}
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
 
             <div className="section-head small"><div className="section-title">Сертификаты</div><div className="section-meta">Купить →</div></div>
@@ -1252,6 +1392,187 @@
                 <div className="row"><div className="row-icon gray">{ICN.shieldIcon}</div><div className="row-body"><div className="row-name">Приватность</div><div className="row-sub">Кто видит ваш профиль</div></div><span className="row-end">{ICN.chev}</span></div>
                 <div className="row"><div className="row-icon gray">{ICN.lifebuoy}</div><div className="row-body"><div className="row-name">Поддержка</div><div className="row-sub">Чат с менеджером</div></div><span className="row-end">{ICN.chev}</span></div>
               </div>
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    /* ========== PROFILE EDIT SCREEN ========== */
+    function ProfileEditScreen({ nav, profile, setProfile }) {
+      const [draft, setDraft] = useState({ ...profile });
+      const nameOk  = draft.name.trim().length >= 3;
+      const phoneOk = draft.phone.replace(/\D/g,'').length >= 10;
+      const emailOk = /^\S+@\S+\.\S+$/.test(draft.email.trim());
+      const tgOk    = draft.tg.trim().replace(/^@/, '').length >= 3;
+      const allOk = nameOk && phoneOk && emailOk && tgOk;
+
+      const onSave = () => {
+        if (!allOk) return;
+        setProfile(draft);
+        nav.pop();
+      };
+
+      return (
+        <React.Fragment>
+          <StatusBar />
+          <div className="nav">
+            <button className="nav-btn" onClick={nav.pop}>{ICN.back}</button>
+            <div className="nav-title">Изменить профиль</div>
+            <button className="nav-btn" onClick={onSave} style={{color: allOk ? 'var(--brand)' : 'var(--text-3)', fontWeight: 700, fontSize: 13, width: 'auto', padding: '0 12px'}}>Сохранить</button>
+          </div>
+          <div className="scroll">
+            <div className="edit-section">
+              <div className="profile-form">
+                <FormRow icon={ICN.person} label="Имя и фамилия" value={draft.name}  onChange={(v) => setDraft({...draft, name: v})}  placeholder="Например, Анна Иванова" helper="Как в паспорте — для договора оферты" hint="Минимум 3 буквы" validate={(v) => v.trim().length >= 3} />
+                <FormRow icon={ICN.phone}  label="Телефон"        value={draft.phone} onChange={(v) => setDraft({...draft, phone: v})} placeholder="+7 (___) ___-__-__"      helper="Чтобы напомнить за день" hint="Введите номер полностью — 10 или 11 цифр" type="tel" validate={(v) => v.replace(/\D/g,'').length >= 10} />
+                <FormRow icon={ICN.mail}   label="Почта"          value={draft.email} onChange={(v) => setDraft({...draft, email: v})} placeholder="anna@example.com"          helper="Сюда придёт чек и подтверждение" hint="Нужно так: имя@домен.зона" type="email" validate={(v) => /^\S+@\S+\.\S+$/.test(v.trim())} />
+                <FormRow icon={ICN.tg}     label="Телеграм"       value={draft.tg}    onChange={(v) => setDraft({...draft, tg: v})}    placeholder="@username"                 helper="Например, @vika_sh" hint="Не меньше 3 символов после @" validate={(v) => v.trim().replace(/^@/, '').length >= 3} />
+                <FormRow icon={ICN.cake}   label="Дата рождения"  value={draft.birth} onChange={(v) => setDraft({...draft, birth: v})} placeholder="дд.мм.гггг" optional />
+              </div>
+            </div>
+          </div>
+          <div className="bottom-bar">
+            <button className={`btn-cta${allOk ? '' : ' muted'}`} style={{width: '100%', marginLeft: 0, justifyContent: 'center'}} onClick={onSave}>
+              Сохранить изменения
+            </button>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    /* ========== TOPUP SCREEN ========== */
+    function TopupScreen({ nav, deposit, onTopup }) {
+      const presets = [
+        { val: 500,  bonus: null },
+        { val: 1000, bonus: null },
+        { val: 2000, bonus: '+100 ₽ бонус' },
+        { val: 5000, bonus: '+500 ₽ бонус' },
+      ];
+      const [amount, setAmount] = useState(1000);
+      const sel = presets.find(p => p.val === amount);
+      const bonus = sel && sel.bonus ? (sel.val >= 5000 ? 500 : 100) : 0;
+
+      return (
+        <React.Fragment>
+          <StatusBar />
+          <div className="nav">
+            <button className="nav-btn" onClick={nav.pop}>{ICN.back}</button>
+            <div className="nav-title">Пополнение</div>
+            <div style={{width: 40}} />
+          </div>
+          <div className="scroll">
+            <div className="balance-display">
+              <div className="balance-lbl">Текущий баланс</div>
+              <div className="balance-val">{deposit.toLocaleString('ru-RU')} ₽</div>
+            </div>
+
+            <div className="pay-section">
+              <div className="pay-section-head"><div className="pay-section-title">Сумма пополнения</div></div>
+              <div className="amount-grid">
+                {presets.map(p => (
+                  <button key={p.val} className={`amount-pill${amount === p.val ? ' selected' : ''}`} onClick={() => setAmount(p.val)}>
+                    <div className="amount-val">{p.val.toLocaleString('ru-RU')} ₽</div>
+                    {p.bonus && <div className="amount-bonus">{p.bonus}</div>}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="pay-section">
+              <div className="pay-section-head"><div className="pay-section-title">Метод платежа</div></div>
+              <div className="profile-row">
+                <div className="row">
+                  <div className="row-icon red">{ICN.cardIcon}</div>
+                  <div className="row-body"><div className="row-name">Альфа Банк</div><div className="row-sub">СБП · моментально</div></div>
+                  <span className="row-end">Изменить {ICN.chev}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bottom-bar">
+            <div className="bottom-row">
+              <div className="price-col">
+                <div className="price-lbl">Будет на счёте</div>
+                <div className="price-val">{(deposit + amount + bonus).toLocaleString('ru-RU')} ₽</div>
+              </div>
+              <button className="btn-cta" onClick={() => { onTopup(amount + bonus); nav.pop(); }}>Пополнить {ICN.arrR}</button>
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    /* ========== BUY ABONEMENT SCREEN ========== */
+    function AbonementScreen({ nav, abonement, onBuyAbonement }) {
+      const packs = [
+        { id: 'p4',  name: '4 занятия',  sub: 'Мини-группа',                       price: 7400,  bonus: 'Скидка 525 ₽',     variant: 'plain', recommend: null },
+        { id: 'p8',  name: '8 занятий',  sub: 'Самый популярный',                  price: 14000, bonus: 'Скидка 1 200 ₽',   variant: 'fancy-pkg', recommend: 'ХИТ' },
+        { id: 'p12', name: '12 занятий', sub: 'Максимальная выгода',               price: 18000, bonus: 'Скидка 3 600 ₽',   variant: 'fancy-pkg-bold', recommend: null },
+      ];
+      const [selected, setSelected] = useState('p8');
+      const sel = packs.find(p => p.id === selected);
+
+      return (
+        <React.Fragment>
+          <StatusBar />
+          <div className="nav">
+            <button className="nav-btn" onClick={nav.pop}>{ICN.back}</button>
+            <div className="nav-title">Абонемент</div>
+            <div style={{width: 40}} />
+          </div>
+          <div className="scroll">
+            <div className="order" style={{marginTop: 12}}>
+              <div className="order-thumb">{abonement.remaining}/{abonement.total}</div>
+              <div className="order-body">
+                <div className="order-name">Текущий абонемент</div>
+                <div className="order-meta">Действует до {abonement.until}</div>
+              </div>
+            </div>
+
+            <div className="pay-section">
+              <div className="pay-section-head"><div className="pay-section-title">Выберите пакет</div></div>
+              <div className="tariffs">
+                {packs.map(p => {
+                  const isSel = selected === p.id;
+                  return (
+                    <div key={p.id} className={`tariff ${p.variant}${isSel ? ' selected' : ''}`} onClick={() => setSelected(p.id)}>
+                      {p.recommend && <div className="tariff-badge">{p.recommend}</div>}
+                      <div className="tariff-radio">{isSel && ICN.ck}</div>
+                      <div className="tariff-body">
+                        <div className="tariff-name">{p.name}</div>
+                        <div className="tariff-sub">{p.sub}</div>
+                      </div>
+                      <div className="tariff-price-col">
+                        <div className="tariff-price">{p.price.toLocaleString('ru-RU')} ₽</div>
+                        {p.bonus && <div className="tariff-bonus" style={(p.variant !== 'plain') ? {color: '#fff', opacity: 0.95} : undefined}>{p.bonus}</div>}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="pay-section">
+              <div className="pay-section-head"><div className="pay-section-title">Метод платежа</div></div>
+              <div className="profile-row">
+                <div className="row">
+                  <div className="row-icon red">{ICN.cardIcon}</div>
+                  <div className="row-body"><div className="row-name">Альфа Банк</div><div className="row-sub">СБП · моментально</div></div>
+                  <span className="row-end">Изменить {ICN.chev}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bottom-bar">
+            <div className="bottom-row">
+              <div className="price-col">
+                <div className="price-lbl">К оплате</div>
+                <div className="price-val">{sel.price.toLocaleString('ru-RU')} ₽</div>
+              </div>
+              <button className="btn-cta" onClick={() => { onBuyAbonement(parseInt(sel.id.replace('p',''))); nav.pop(); }}>Купить {ICN.arrR}</button>
             </div>
           </div>
         </React.Fragment>
@@ -1313,13 +1634,21 @@
     /* ========== APP ROUTER ========== */
     const TAB_SCREENS = { home: 'home', sched: 'schedule', club: 'club', profile: 'profile' };
     const SCREEN_TO_TAB = { home: 'home', schedule: 'sched', club: 'club', profile: 'profile' };
-    const NO_TAB_BAR = new Set(['training', 'payment', 'coach']);
+    const NO_TAB_BAR = new Set(['training', 'payment', 'coach', 'profile-edit', 'topup', 'buy-abonement']);
+
+    const INITIAL_PAYMENT_METHODS = [
+      { id: 'alfa',    name: 'Альфа Банк', sub: 'СБП · моментально',   icon: 'sbp',  color: 'red',  isDefault: true  },
+      { id: 'tinkoff', name: 'Тинькофф',   sub: 'Карта · ✱✱✱✱ 4321',  icon: 'card', color: 'blue', isDefault: false },
+    ];
 
     function App() {
       const [theme, setTheme] = useState('light');
       const [stack, setStack] = useState([{ screen: 'schedule', params: {} }]);
       const [trainings, setTrainings] = useState(INITIAL_TRAININGS);
       const [profile, setProfile] = useState({ name:'', phone:'', email:'', tg:'', birth:'' });
+      const [deposit, setDeposit] = useState(200);
+      const [abonement, setAbonement] = useState({ remaining: 6, total: 8, until: '15 июля 2026' });
+      const [paymentMethods, setPaymentMethods] = useState(INITIAL_PAYMENT_METHODS);
       const [toast, setToast] = useState(null);
       const [animKey, setAnimKey] = useState(0);
 
@@ -1348,12 +1677,26 @@
         setTimeout(() => setToast(null), 2400);
       };
 
+      const onTopup = (amount) => {
+        setDeposit(d => d + amount);
+        setToast(`Депозит пополнен на ${amount.toLocaleString('ru-RU')} ₽`);
+        setTimeout(() => setToast(null), 2400);
+      };
+      const onBuyAbonement = (size) => {
+        setAbonement({ remaining: size, total: size, until: '15 января 2027' });
+        setToast(`Куплен пакет: ${size} занятий`);
+        setTimeout(() => setToast(null), 2400);
+      };
+
       let screenEl;
       switch (top.screen) {
         case 'home':     screenEl = <HomeScreen     nav={nav} onScheduleTab={() => nav.switchTo('sched')} />; break;
         case 'schedule': screenEl = <ScheduleScreen nav={nav} trainings={trainings} onBookToggle={onBookToggle} />; break;
         case 'club':     screenEl = <ClubScreen     nav={nav} />; break;
-        case 'profile':  screenEl = <ProfileScreen  nav={nav} trainings={trainings} />; break;
+        case 'profile':  screenEl = <ProfileScreen  nav={nav} profile={profile} theme={theme} setTheme={setTheme} deposit={deposit} abonement={abonement} paymentMethods={paymentMethods} />; break;
+        case 'profile-edit': screenEl = <ProfileEditScreen nav={nav} profile={profile} setProfile={setProfile} />; break;
+        case 'topup':    screenEl = <TopupScreen    nav={nav} deposit={deposit} onTopup={onTopup} />; break;
+        case 'buy-abonement': screenEl = <AbonementScreen nav={nav} abonement={abonement} onBuyAbonement={onBuyAbonement} />; break;
         case 'training': screenEl = <TrainingDetailScreen nav={nav} trainingId={top.params.trainingId} trainings={trainings} onBookToggle={onBookToggle} />; break;
         case 'payment':  screenEl = <PaymentScreen  nav={nav} trainingId={top.params.trainingId} trainings={trainings} profile={profile} setProfile={setProfile} onBookConfirm={onBookConfirm} />; break;
         case 'coach':    screenEl = <CoachScreen    nav={nav} coachId={top.params.coachId} trainings={trainings.filter(t => t.coachId === top.params.coachId)} />; break;
