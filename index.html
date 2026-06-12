@@ -430,13 +430,35 @@
     .stat-val { font-size: 18px; font-weight: 700; letter-spacing: -0.4px; line-height: 1; font-variant-numeric: tabular-nums; }
     .stat-val .cur { font-size: 13px; color: var(--text-3); margin-left: 2px; font-weight: 600; }
     .stat-lbl { font-size: 10px; color: var(--text-3); margin-top: 6px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
-    .promo-card { margin: 18px 14px 0; padding: 16px; background: var(--grad-card); border-radius: 18px; color: #fff; position: relative; overflow: hidden; box-shadow: 0 10px 28px rgba(157,107,255,0.32); cursor: pointer; }
-    .promo-card::before { content: ''; position: absolute; right: -40px; top: -40px; width: 160px; height: 160px; border-radius: 80px; background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%); }
-    .promo-card::after { content: ''; position: absolute; right: -20px; bottom: -30px; width: 100px; height: 100px; border-radius: 50px; background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%); }
-    .promo-body { position: relative; }
-    .promo-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
-    .promo-title { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; margin-top: 6px; line-height: 1.2; max-width: 70%; }
-    .promo-btn-inline { margin-top: 14px; padding: 9px 16px; background: rgba(255,255,255,0.95); color: var(--brand-2); border: 0; border-radius: 999px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font); display: inline-flex; align-items: center; gap: 6px; }
+    .promo-card {
+      margin: 18px 14px 0;
+      padding: 20px 20px 22px;
+      background: var(--grad-card);
+      border-radius: 22px;
+      color: #fff;
+      position: relative;
+      overflow: visible;
+      box-shadow: 0 10px 28px rgba(157,107,255,0.32);
+      cursor: pointer;
+      min-height: 200px;
+      isolation: isolate;
+    }
+    .promo-body { position: relative; z-index: 2; max-width: 55%; }
+    .promo-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+    .promo-title { font-size: 20px; font-weight: 800; letter-spacing: -0.4px; margin-top: 8px; line-height: 1.15; }
+    .promo-sub { font-size: 13px; opacity: 0.82; margin-top: 6px; letter-spacing: -0.04px; font-weight: 500; }
+    .promo-btn-inline { margin-top: 16px; padding: 11px 18px; background: rgba(255,255,255,0.95); color: var(--brand-2); border: 0; border-radius: 999px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font); display: inline-flex; align-items: center; gap: 6px; }
+    .promo-photo {
+      position: absolute;
+      right: -10px; bottom: -10px;
+      width: 180px; height: 220px;
+      background-image: url("https://picsum.photos/seed/badm-promo-1/600/800");
+      background-size: cover; background-position: center;
+      border-radius: 50% 50% 0 0;
+      z-index: 1;
+      filter: drop-shadow(0 12px 20px rgba(40,15,70,0.4));
+      pointer-events: none;
+    }
 
     .upcoming { display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); margin-bottom: 8px; cursor: pointer; transition: background 0.18s, transform 0.1s; }
     .upcoming:hover { background: var(--card-strong); }
@@ -1342,6 +1364,16 @@
                   </button>
                 </div>
               </div>
+            </div>
+
+            <div className="promo-card" onClick={() => nav.push('buy-abonement')}>
+              <div className="promo-body">
+                <div className="promo-eyebrow">Готовы перейти выше?</div>
+                <div className="promo-title">Прокачайте уровень до E</div>
+                <div className="promo-sub">С пакетом «8 занятий» — выгоднее на 1 200 ₽</div>
+                <button className="promo-btn-inline">Подобрать {ICN.arrR}</button>
+              </div>
+              <div className="promo-photo" />
             </div>
 
             <div className="section-head small">
