@@ -1,0 +1,1420 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>Прототип · iOS — клик-сценарий</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root {
+      --brand: #DD58C5;
+      --brand-2: #7238E6;
+      --grad: linear-gradient(135deg, #DD58C5 0%, #7238E6 100%);
+      --grad-amber: linear-gradient(135deg, #FFB347 0%, #FF7E5F 100%);
+      --grad-amber-soft: linear-gradient(135deg, #FFE7C5 0%, #FFDAC4 100%);
+      --grad-violet-soft: linear-gradient(135deg, #C5A4FF 0%, #9D6BFF 100%);
+      --grad-magenta-bold: linear-gradient(135deg, #FF6BD0 0%, #B847C8 50%, #7238E6 100%);
+      --grad-mint: linear-gradient(135deg, #34D399 0%, #0D9488 100%);
+      --grad-card: linear-gradient(135deg, #C5A4FF 0%, #7238E6 100%);
+      --success: #10B981;
+      --warning: #F97316;
+      --star: #FFB84D;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+    }
+    .theme-light {
+      --bg: radial-gradient(170% 100% at 12% 0%, #FCE9DD 0%, #F6E2EE 28%, #ECE2F2 58%, #DFDCEC 100%);
+      --hero: radial-gradient(120% 100% at 70% 0%, #FFA770 0%, #FF6B9E 35%, #C25BE0 70%, #7238E6 100%);
+      --card: rgba(255,255,255,0.72);
+      --card-strong: rgba(255,255,255,0.92);
+      --card-border: rgba(255,255,255,0.85);
+      --card-shadow: 0 1px 0 rgba(255,255,255,0.85) inset, 0 8px 22px rgba(40,30,80,0.05);
+      --soft: rgba(255,255,255,0.5);
+      --soft-2: rgba(255,255,255,0.78);
+      --tab-bar: rgba(255,255,255,0.62);
+      --tab-bar-border: rgba(26,21,48,0.06);
+      --border: rgba(26,21,48,0.06);
+      --border-strong: rgba(26,21,48,0.1);
+      --text: #1A1530;
+      --text-2: rgba(26,21,48,0.6);
+      --text-3: rgba(26,21,48,0.4);
+      --text-4: rgba(26,21,48,0.28);
+      --sb-fill: #1A1530;
+      --bottom-bg: rgba(255,255,255,0.78);
+      --bottom-border: rgba(26,21,48,0.08);
+      --tile: rgba(255,255,255,0.6);
+      --selected-ring: rgba(114,56,230,0.65);
+      --selected-bg: rgba(255,255,255,0.95);
+      --input-bg: rgba(255,255,255,0.85);
+      --input-border: rgba(26,21,48,0.08);
+      --banner-bg: linear-gradient(135deg, rgba(255,231,197,0.6) 0%, rgba(255,218,196,0.65) 100%);
+      --banner-border: rgba(255,126,95,0.25);
+      --banner-text: #6B3A1F;
+      --booked-bg: rgba(16,185,129,0.13);
+      --avatar-mint-bg: linear-gradient(135deg,#B8F2D0,#6EE0A8);
+      --avatar-mint-fg: #052A1E;
+      --avatar-peach-bg: linear-gradient(135deg,#FFD9C0,#FFAA80);
+      --avatar-peach-fg: #5A2100;
+      --avatar-magenta-bg: linear-gradient(135deg,#FFC2EE,#DD58C5);
+      --avatar-magenta-fg: #4A0040;
+      --avatar-violet-bg: linear-gradient(135deg,#D6C5FF,#9D6BFF);
+      --avatar-violet-fg: #2A0E70;
+      --avatar-shadow: 0 12px 30px rgba(221,88,197,0.32);
+      --ring-light: rgba(255,255,255,0.7);
+    }
+    .theme-dark {
+      --bg: radial-gradient(140% 100% at 18% 0%, #2F2046 0%, #251739 40%, #1B1130 75%, #150A22 100%);
+      --hero: radial-gradient(100% 90% at 75% 10%, #FF6B9E 0%, #DD58C5 25%, #7238E6 55%, #2A0E70 100%);
+      --card: rgba(255,255,255,0.06);
+      --card-strong: rgba(255,255,255,0.09);
+      --card-border: rgba(255,255,255,0.09);
+      --card-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
+      --soft: rgba(255,255,255,0.06);
+      --soft-2: rgba(255,255,255,0.1);
+      --tab-bar: rgba(20,12,32,0.62);
+      --tab-bar-border: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.08);
+      --border-strong: rgba(255,255,255,0.16);
+      --text: #FFFFFF;
+      --text-2: rgba(255,255,255,0.7);
+      --text-3: rgba(255,255,255,0.42);
+      --text-4: rgba(255,255,255,0.25);
+      --sb-fill: #FFFFFF;
+      --bottom-bg: rgba(20,12,32,0.7);
+      --bottom-border: rgba(255,255,255,0.08);
+      --tile: rgba(255,255,255,0.05);
+      --selected-ring: var(--brand);
+      --selected-bg: rgba(221,88,197,0.08);
+      --input-bg: rgba(255,255,255,0.06);
+      --input-border: rgba(255,255,255,0.12);
+      --banner-bg: linear-gradient(135deg, rgba(255,179,71,0.14) 0%, rgba(255,126,95,0.14) 100%);
+      --banner-border: rgba(255,179,71,0.32);
+      --banner-text: #FFD9A8;
+      --booked-bg: rgba(52,211,153,0.16);
+      --avatar-mint-bg: linear-gradient(135deg,#34D399,#0D9488);
+      --avatar-mint-fg: #042618;
+      --avatar-peach-bg: linear-gradient(135deg,#FFA770,#FF6B35);
+      --avatar-peach-fg: #1A0700;
+      --avatar-magenta-bg: linear-gradient(135deg,#F062D8,#DD58C5);
+      --avatar-magenta-fg: #fff;
+      --avatar-violet-bg: linear-gradient(135deg,#9D6BFF,#4A1DAD);
+      --avatar-violet-fg: #fff;
+      --avatar-shadow: 0 12px 36px rgba(221,88,197,0.4);
+      --ring-light: rgba(255,255,255,0.22);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #ECEAE8; font-family: var(--font); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    body { min-height: 100vh; padding: 40px 20px; display: flex; justify-content: center; align-items: flex-start; }
+
+    /* Page layout */
+    .page { display: flex; gap: 32px; align-items: flex-start; }
+
+    /* Side panel with theme toggle */
+    .side {
+      width: 220px; padding-top: 80px;
+      display: flex; flex-direction: column; gap: 14px;
+      font-size: 13px; color: rgba(0,0,0,0.6);
+    }
+    .side h3 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,0,0,0.5); margin-bottom: 0; }
+    .theme-switch {
+      display: flex; padding: 4px;
+      background: #fff; border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .theme-switch button {
+      flex: 1; padding: 9px 12px; border: 0;
+      background: transparent; border-radius: 10px;
+      font-family: var(--font); font-size: 13px; font-weight: 600;
+      letter-spacing: -0.1px; cursor: pointer; color: rgba(0,0,0,0.55);
+      transition: background 0.2s, color 0.2s;
+    }
+    .theme-switch button:hover { color: rgba(0,0,0,0.85); }
+    .theme-switch button.active { background: #1A1530; color: #fff; }
+    .side-hint {
+      font-size: 11px; line-height: 1.55; color: rgba(0,0,0,0.55);
+      padding: 8px 6px; background: rgba(255,255,255,0.5); border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .side-hint b { color: rgba(0,0,0,0.85); font-weight: 700; }
+    .preset-btn {
+      padding: 10px 12px;
+      background: #fff; border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      font-family: var(--font); font-size: 12px; font-weight: 600;
+      letter-spacing: -0.04px; cursor: pointer; color: #1A1530;
+      transition: background 0.2s;
+      text-align: left;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .preset-btn:hover { background: rgba(255,255,255,0.85); }
+    .preset-btn .dot {
+      width: 8px; height: 8px; border-radius: 5px;
+      background: #10B981;
+      box-shadow: 0 0 8px rgba(16,185,129,0.5);
+    }
+    .preset-btn .dot.off { background: #ccc; box-shadow: none; }
+
+    /* PHONE FRAME */
+    .frame {
+      width: 393px; height: 852px; border-radius: 56px;
+      overflow: hidden; position: relative;
+      background: var(--bg); color: var(--text);
+      box-shadow: 0 30px 80px rgba(20,15,35,0.22), 0 0 0 12px #14101c, 0 0 0 14px rgba(255,255,255,0.06);
+    }
+
+    /* SCREEN — full size inside frame */
+    .screen {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      background: var(--bg);
+    }
+    .screen.entering { animation: slideIn 0.32s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    @keyframes slideIn {
+      from { transform: translateX(60px); opacity: 0.4; }
+      to   { transform: translateX(0); opacity: 1; }
+    }
+    .scroll { flex: 1; overflow-y: auto; padding-bottom: 110px; }
+    .scroll::-webkit-scrollbar { display: none; }
+
+    /* ============== STATUS BAR ============== */
+    .status-bar { display: flex; justify-content: space-between; align-items: center; padding: 16px 32px 0; height: 54px; font-size: 17px; font-weight: 600; letter-spacing: -0.4px; color: var(--sb-fill); position: relative; z-index: 30; flex-shrink: 0; }
+    .status-bar.over-hero { color: #fff; }
+    .island { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 124px; height: 36px; background: #000; border-radius: 18px; }
+
+    /* ============== NAV ============== */
+    .nav { display: flex; align-items: center; gap: 8px; padding: 8px 14px 4px; flex-shrink: 0; }
+    .nav-btn { width: 40px; height: 40px; border-radius: 20px; background: var(--soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text); cursor: pointer; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: background 0.18s, transform 0.1s; }
+    .nav-btn:hover { background: var(--soft-2); }
+    .nav-btn:active { transform: scale(0.94); }
+    .nav-title { flex: 1; text-align: center; font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
+
+    /* ============== SEG TABS ============== */
+    .seg { margin: 14px 14px 0; padding: 4px; display: flex; position: relative; background: var(--soft); border: 1px solid var(--border); border-radius: 14px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .seg-thumb { position: absolute; top: 4px; bottom: 4px; width: calc(50% - 4px); background: var(--soft-2); border-radius: 10px; transition: transform 0.28s cubic-bezier(0.2,0.8,0.2,1); box-shadow: 0 1px 2px rgba(20,15,35,0.08); }
+    .seg-thumb.right { transform: translateX(100%); }
+    .seg-btn { flex: 1; padding: 9px 12px; background: transparent; border: 0; color: var(--text-2); font-size: 14px; font-weight: 600; letter-spacing: -0.1px; cursor: pointer; border-radius: 10px; transition: color 0.18s; z-index: 1; font-family: var(--font); }
+    .seg-btn.active { color: var(--text); }
+
+    /* ============== MONTH ROW ============== */
+    .month-row { display: flex; align-items: center; justify-content: space-between; padding: 20px 18px 14px; }
+    .month-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; line-height: 1; }
+    .month-nav { display: flex; gap: 6px; }
+    .icon-btn { width: 36px; height: 36px; background: var(--soft); border: 1px solid var(--border); border-radius: 18px; display: flex; align-items: center; justify-content: center; color: var(--text); cursor: pointer; transition: background 0.18s, transform 0.1s; }
+    .icon-btn:active { transform: scale(0.94); }
+
+    /* ============== WEEK STRIP ============== */
+    .week-strip { padding: 0 12px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+    .day { display: flex; flex-direction: column; align-items: center; padding: 9px 0 11px; border-radius: 16px; background: var(--card); border: 1px solid var(--border); cursor: pointer; font-family: var(--font); transition: background 0.18s, transform 0.12s; box-shadow: var(--card-shadow); position: relative; }
+    .day:active { transform: scale(0.96); }
+    .day-name { font-size: 11px; font-weight: 600; color: var(--text-3); letter-spacing: 0.04em; text-transform: lowercase; margin-bottom: 4px; }
+    .day-num { font-size: 18px; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
+    .day.today { background: var(--grad); border-color: transparent; box-shadow: 0 6px 20px rgba(221,88,197,0.32); }
+    .day.today .day-name, .day.today .day-num { color: #fff; }
+    .day.today .day-name { opacity: 0.85; }
+    .day.selected:not(.today) { box-shadow: 0 0 0 2px var(--brand) inset, 0 8px 22px rgba(221,88,197,0.18); border-color: transparent; }
+    .day.today.selected { box-shadow: 0 6px 22px rgba(221,88,197,0.42), 0 0 0 2px var(--ring-light) inset; }
+    .day-dot { position: absolute; bottom: 4px; width: 4px; height: 4px; border-radius: 2px; background: var(--brand); opacity: 0.55; }
+    .day.today .day-dot { background: #fff; opacity: 0.9; }
+
+    /* ============== SECTION HEAD ============== */
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; padding: 22px 20px 12px; }
+    .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+    .section-meta { font-size: 13px; color: var(--text-3); letter-spacing: -0.08px; font-weight: 500; }
+    .section-head.small { padding: 22px 14px 10px; }
+    .section-head.small .section-title { font-size: 11px; font-weight: 700; color: var(--text-2); letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* ============== SCHEDULE CARD ============== */
+    .cards { padding: 0 14px; display: flex; flex-direction: column; gap: 10px; }
+    .card { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 14px; background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); transition: transform 0.12s, background 0.18s; cursor: pointer; }
+    .card:hover { background: var(--card-strong); }
+    .card:active { transform: scale(0.99); }
+    .card-time-col { min-width: 56px; }
+    .card-time { font-size: 20px; font-weight: 700; letter-spacing: -0.6px; line-height: 1; font-variant-numeric: tabular-nums; }
+    .card-dur { font-size: 12px; color: var(--text-3); margin-top: 6px; font-weight: 500; }
+    .card-body { min-width: 0; }
+    .card-name { font-size: 16px; font-weight: 600; letter-spacing: -0.3px; line-height: 1.2; margin-bottom: 8px; }
+    .card-coach { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .card-meta { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); letter-spacing: -0.08px; font-weight: 500; }
+    .meta-icon { display: inline-flex; align-items: center; opacity: 0.6; }
+    .meta-warn { color: var(--warning); font-weight: 600; }
+    .meta-warn .meta-icon { opacity: 1; }
+    .booked-pill { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px 3px 5px; background: var(--booked-bg); color: var(--success); border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: -0.04px; }
+    .booked-pill .ck { width: 14px; height: 14px; border-radius: 7px; background: var(--success); display: flex; align-items: center; justify-content: center; color: #042618; font-size: 9px; font-weight: 800; }
+    .card-action { align-self: center; }
+    .btn { padding: 10px 16px; border: 0; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: -0.1px; cursor: pointer; font-family: var(--font); transition: transform 0.12s, box-shadow 0.2s; white-space: nowrap; }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--grad); color: #fff; box-shadow: 0 4px 14px rgba(221,88,197,0.32); }
+    .btn-secondary { background: var(--soft-2); color: var(--text); border: 1px solid var(--border-strong); }
+
+    /* ============== AVATAR ============== */
+    .avatar { display: flex; align-items: center; justify-content: center; font-weight: 700; letter-spacing: 0.02em; flex-shrink: 0; }
+    .avatar.lg { width: 44px; height: 44px; border-radius: 22px; font-size: 14px; }
+    .avatar.sm { width: 24px; height: 24px; border-radius: 12px; font-size: 10px; }
+    .avatar.xs { width: 22px; height: 22px; border-radius: 11px; font-size: 9px; }
+    .avatar.mint { background: var(--avatar-mint-bg); color: var(--avatar-mint-fg); }
+    .avatar.magenta { background: var(--avatar-magenta-bg); color: var(--avatar-magenta-fg); }
+    .avatar.violet { background: var(--avatar-violet-bg); color: var(--avatar-violet-fg); }
+    .avatar.peach { background: var(--avatar-peach-bg); color: var(--avatar-peach-fg); }
+    .coach-link { font-size: 13px; font-weight: 500; color: var(--text); letter-spacing: -0.1px; cursor: pointer; border-bottom: 1px solid transparent; }
+    .coach-link:hover { border-bottom-color: var(--text-3); }
+
+    /* ============== TRAINING DETAIL ============== */
+    .hero { position: relative; height: 320px; background: var(--hero); margin-top: -54px; padding-top: 54px; overflow: hidden; flex-shrink: 0; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 85%, rgba(255,255,255,0.18) 0%, transparent 35%), radial-gradient(circle at 75% 30%, rgba(255,255,255,0.1) 0%, transparent 30%); pointer-events: none; }
+    .hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(180deg, transparent, var(--bg)); pointer-events: none; }
+    .hero-nav { position: relative; z-index: 10; display: flex; justify-content: space-between; padding: 10px 16px 0; }
+    .glass-btn { width: 40px; height: 40px; border-radius: 20px; background: rgba(0,0,0,0.28); backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4); border: 1px solid rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; color: #fff; cursor: pointer; transition: transform 0.1s, background 0.18s; }
+    .glass-btn:hover { background: rgba(0,0,0,0.4); }
+    .glass-btn:active { transform: scale(0.94); }
+    .glass-btns { display: flex; gap: 8px; }
+    .hero-content { position: absolute; left: 20px; right: 20px; bottom: 32px; z-index: 10; color: #fff; }
+    .hero-tags { display: flex; gap: 6px; margin-bottom: 14px; }
+    .hero-tag { padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,0.18); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.22); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .hero-time { font-size: 44px; font-weight: 800; letter-spacing: -1.5px; line-height: 1; font-variant-numeric: tabular-nums; }
+    .hero-meta { font-size: 14px; opacity: 0.85; margin-top: 8px; letter-spacing: -0.1px; font-weight: 500; }
+
+    .content { padding: 8px 16px 0; }
+    .title { font-size: 26px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.1; padding: 0 4px; margin-bottom: 4px; }
+    .subtitle { font-size: 13px; color: var(--text-3); padding: 0 4px; margin-bottom: 18px; letter-spacing: -0.08px; font-weight: 500; }
+
+    .coach-card { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); cursor: pointer; transition: transform 0.1s, background 0.18s; margin-bottom: 10px; }
+    .coach-card:hover { background: var(--card-strong); }
+    .coach-card:active { transform: scale(0.99); }
+    .coach-body { flex: 1; min-width: 0; }
+    .coach-name { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
+    .coach-role { font-size: 12px; color: var(--text-3); margin-top: 2px; letter-spacing: -0.04px; }
+    .chev { color: var(--text-3); }
+
+    .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+    .tile { padding: 12px 14px; background: var(--tile); border: 1px solid var(--border); border-radius: 14px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .tile-label { font-size: 10px; font-weight: 700; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+    .tile-val { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
+    .tile-sub { font-size: 11px; color: var(--text-3); margin-top: 2px; font-weight: 500; }
+
+    .section { margin-top: 22px; padding: 0 4px; }
+    .sec-title { font-size: 11px; font-weight: 700; color: var(--text-2); letter-spacing: 0.12em; text-transform: uppercase; padding: 0 0 10px; }
+
+    .participants { padding: 16px; background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .slots-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .slots-count { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
+    .slots-count .num { font-size: 17px; }
+    .slots-free { color: var(--text-3); font-weight: 500; font-size: 13px; }
+    .slots-dots { display: flex; gap: 5px; }
+    .slot-dot { width: 8px; height: 8px; border-radius: 5px; background: var(--soft-2); }
+    .slot-dot.taken { background: var(--brand); }
+    .slot-dot.you { background: var(--success); box-shadow: 0 0 0 2px rgba(16,185,129,0.18); }
+    .avatars-row { display: flex; gap: -4px; align-items: center; }
+    .avatars-row .avatar { margin-left: -8px; border: 2px solid var(--card); }
+    .avatars-row .avatar:first-child { margin-left: 0; }
+    .avatars-row .invite { width: 24px; height: 24px; border-radius: 12px; background: transparent; border: 1.5px dashed var(--border-strong); display: flex; align-items: center; justify-content: center; margin-left: -8px; color: var(--text-2); font-size: 14px; cursor: pointer; }
+    .avatars-row .more { margin-left: 8px; font-size: 13px; color: var(--text-2); font-weight: 500; }
+
+    .gear-list { display: flex; flex-direction: column; gap: 8px; }
+    .gear-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--tile); border: 1px solid var(--border); border-radius: 14px; }
+    .gear-icon { width: 32px; height: 32px; border-radius: 10px; background: var(--soft); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--text-2); }
+    .gear-text { flex: 1; }
+    .gear-name { font-size: 14px; font-weight: 600; letter-spacing: -0.2px; }
+    .gear-note { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+    /* ============== PAYMENT ============== */
+    .order { margin: 12px 14px 0; padding: 14px 16px; background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; align-items: center; gap: 12px; }
+    .order-thumb { width: 48px; height: 48px; border-radius: 14px; background: var(--grad-magenta-bold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: -0.2px; box-shadow: 0 4px 12px rgba(184,71,200,0.3); }
+    .order-body { flex: 1; min-width: 0; }
+    .order-name { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
+    .order-meta { font-size: 12px; color: var(--text-3); margin-top: 3px; letter-spacing: -0.04px; }
+    .order-time { font-size: 14px; font-weight: 600; letter-spacing: -0.2px; color: var(--text-2); font-variant-numeric: tabular-nums; }
+
+    .banner { margin: 14px 14px 0; padding: 14px 14px 14px 16px; background: var(--banner-bg); border: 1px solid var(--banner-border); border-radius: 16px; display: flex; align-items: center; gap: 12px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .banner-icon { width: 38px; height: 38px; border-radius: 12px; background: var(--grad-amber); color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(255,126,95,0.32); }
+    .banner-text { flex: 1; min-width: 0; }
+    .banner-title { font-size: 14px; font-weight: 700; letter-spacing: -0.2px; color: var(--text); }
+    .banner-sub { font-size: 12px; color: var(--text-2); margin-top: 3px; line-height: 1.35; }
+    .banner-progress { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 999px; background: rgba(255,255,255,0.5); font-size: 11px; font-weight: 700; color: var(--banner-text); letter-spacing: 0.04em; margin-top: 6px; }
+    .theme-dark .banner-progress { background: rgba(255,255,255,0.1); color: #FFD9A8; }
+    .banner-progress-dots { display: flex; gap: 2px; }
+    .banner-progress-dot { width: 5px; height: 5px; border-radius: 3px; background: currentColor; opacity: 0.3; }
+    .banner-progress-dot.on { opacity: 1; }
+
+    .pay-section { margin: 22px 14px 0; }
+    .pay-section-head { display: flex; align-items: baseline; justify-content: space-between; padding: 0 4px 10px; }
+    .pay-section-title { font-size: 11px; font-weight: 700; color: var(--text-2); letter-spacing: 0.12em; text-transform: uppercase; }
+    .pay-section-meta { font-size: 12px; color: var(--text-3); font-weight: 500; }
+    .pay-section-meta.warn { color: var(--warning); font-weight: 700; }
+    .pay-section-meta.ok { color: var(--success); font-weight: 700; }
+
+    .deposit { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .deposit-icon { width: 36px; height: 36px; border-radius: 12px; background: var(--grad-amber); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; box-shadow: 0 4px 12px rgba(255,126,95,0.3); }
+    .deposit-text { flex: 1; }
+    .deposit-name { font-size: 14px; font-weight: 600; letter-spacing: -0.2px; }
+    .deposit-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+    .deposit-val { font-size: 15px; font-weight: 700; letter-spacing: -0.2px; color: var(--warning); font-variant-numeric: tabular-nums; }
+
+    .tariffs { display: flex; flex-direction: column; gap: 8px; }
+    .tariff { position: relative; display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: var(--card-shadow); cursor: pointer; transition: transform 0.1s; }
+    .tariff:active { transform: scale(0.99); }
+    .tariff.selected { background: var(--selected-bg); box-shadow: 0 0 0 2px var(--selected-ring) inset, var(--card-shadow); border-color: transparent; }
+    .tariff-radio { width: 22px; height: 22px; border-radius: 11px; border: 2px solid var(--border-strong); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .tariff.selected .tariff-radio { background: var(--brand); border-color: transparent; color: #fff; }
+    .tariff-body { flex: 1; min-width: 0; }
+    .tariff-name { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
+    .tariff-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; letter-spacing: -0.04px; }
+    .tariff-price-col { text-align: right; }
+    .tariff-price { font-size: 15px; font-weight: 700; letter-spacing: -0.2px; font-variant-numeric: tabular-nums; }
+    .tariff-bonus { font-size: 11px; color: var(--success); font-weight: 600; margin-top: 2px; }
+    .tariff-badge { position: absolute; top: -7px; right: 14px; padding: 3px 8px; border-radius: 6px; background: var(--grad-amber); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 4px 10px rgba(255,126,95,0.32); }
+    .tariff.fancy-pkg { padding: 14px; background: var(--grad-violet-soft); color: #fff; border-color: transparent; }
+    .tariff.fancy-pkg.selected { box-shadow: 0 0 0 2px #fff inset, 0 10px 28px rgba(157,107,255,0.4); }
+    .tariff.fancy-pkg .tariff-sub { color: rgba(255,255,255,0.85); }
+    .tariff.fancy-pkg .tariff-radio { border-color: rgba(255,255,255,0.5); }
+    .tariff.fancy-pkg.selected .tariff-radio { background: #fff; color: var(--brand-2); }
+    .tariff.fancy-pkg-bold { padding: 14px; background: var(--grad-magenta-bold); color: #fff; border-color: transparent; }
+    .tariff.fancy-pkg-bold.selected { box-shadow: 0 0 0 2px #fff inset, 0 10px 28px rgba(184,71,200,0.45); }
+    .tariff.fancy-pkg-bold .tariff-sub { color: rgba(255,255,255,0.85); }
+    .tariff.fancy-pkg-bold .tariff-radio { border-color: rgba(255,255,255,0.5); }
+    .tariff.fancy-pkg-bold.selected .tariff-radio { background: #fff; color: var(--brand); }
+
+    .addons { padding: 14px 16px; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: var(--card-shadow); display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .addons-icon { width: 36px; height: 36px; border-radius: 12px; background: linear-gradient(135deg, #FFE0F0, #FFC2EE); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .theme-dark .addons-icon { background: linear-gradient(135deg, rgba(255,224,240,0.2), rgba(255,194,238,0.2)); }
+    .addons-text { flex: 1; }
+    .addons-name { font-size: 14px; font-weight: 600; letter-spacing: -0.2px; }
+    .addons-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+    .profile-form { background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); overflow: hidden; }
+    .form-row { display: flex; gap: 12px; align-items: flex-start; padding: 14px; }
+    .form-row + .form-row { border-top: 0.5px solid var(--border); }
+    .form-icon { width: 36px; height: 36px; border-radius: 11px; background: var(--soft-2); color: var(--text-2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; transition: background 0.2s, color 0.2s; }
+    .form-row.valid .form-icon { background: rgba(16,185,129,0.16); color: var(--success); }
+    .form-row.filled:not(.valid) .form-icon { background: rgba(255,138,61,0.18); color: var(--warning); }
+    .form-body { flex: 1; min-width: 0; }
+    .form-label { font-size: 11px; font-weight: 700; color: var(--text-3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .form-label .req { color: var(--warning); }
+    .form-label .opt { font-weight: 600; color: var(--text-4); letter-spacing: -0.02em; text-transform: none; font-size: 11px; }
+    .form-input { width: 100%; background: transparent; border: 0; outline: none; font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--text); letter-spacing: -0.2px; padding: 2px 0; }
+    .form-input::placeholder { color: var(--text-4); font-weight: 500; }
+    .form-helper { font-size: 11px; color: var(--text-3); margin-top: 3px; }
+    .form-check { width: 24px; height: 24px; border-radius: 12px; background: var(--success); color: #042618; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 6px; box-shadow: 0 2px 8px rgba(16,185,129,0.3); }
+
+    .profile-row { padding: 4px 0; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: var(--card-shadow); overflow: hidden; }
+    .row { display: flex; align-items: center; gap: 12px; padding: 12px 14px; cursor: pointer; }
+    .row + .row { border-top: 0.5px solid var(--border); }
+    .row-icon { width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
+    .row-icon.gray { background: var(--soft-2); color: var(--text-2); }
+    .row-icon.red { background: linear-gradient(135deg, #EF4444, #B91C1C); }
+    .row-icon.green { background: var(--grad-mint); }
+    .row-icon.violet { background: var(--grad-card); }
+    .row-icon.peach { background: var(--grad-amber); }
+    .row-icon.magenta { background: var(--grad); }
+    .row-body { flex: 1; min-width: 0; }
+    .row-name { font-size: 14px; font-weight: 600; letter-spacing: -0.2px; }
+    .row-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; letter-spacing: -0.04px; word-break: break-all; }
+    .row-pill { padding: 3px 8px 3px 5px; border-radius: 999px; background: rgba(16,185,129,0.14); color: var(--success); font-size: 11px; font-weight: 700; letter-spacing: -0.04px; display: inline-flex; align-items: center; gap: 4px; }
+    .row-pill .ck { width: 12px; height: 12px; border-radius: 6px; background: var(--success); display: flex; align-items: center; justify-content: center; color: #042618; font-size: 8px; font-weight: 800; }
+    .row-end { color: var(--text-3); display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 500; }
+
+    .promo { display: flex; gap: 8px; }
+    .promo-input { flex: 1; padding: 12px 14px; background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; font-size: 14px; color: var(--text); font-family: var(--font); letter-spacing: -0.1px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); outline: none; }
+    .promo-input::placeholder { color: var(--text-3); }
+    .promo-input:focus { box-shadow: 0 0 0 2px var(--brand) inset; border-color: transparent; }
+    .promo-btn { padding: 12px 18px; background: var(--soft-2); color: var(--text); border: 1px solid var(--border-strong); border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font); }
+
+    /* ============== PROFILE ============== */
+    .p-hero { padding: 18px 16px 4px; text-align: center; }
+    .p-hero-avatar-wrap { display: inline-block; position: relative; margin-bottom: 14px; }
+    .p-hero-avatar { width: 96px; height: 96px; border-radius: 48px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 700; color: #fff; letter-spacing: -0.5px; box-shadow: var(--avatar-shadow); border: 3px solid rgba(255,255,255,0.18); }
+    .level-chip { position: absolute; bottom: -4px; right: -4px; padding: 4px 10px; border-radius: 999px; background: var(--grad-mint); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; box-shadow: 0 4px 12px rgba(16,185,129,0.4); border: 2px solid var(--bg); }
+    .p-hero-name { font-size: 24px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.1; }
+    .p-hero-handle { font-size: 13px; color: var(--text-3); margin-top: 4px; letter-spacing: -0.04px; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 18px 14px 0; }
+    .stat { padding: 14px 8px; text-align: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .stat-val { font-size: 18px; font-weight: 700; letter-spacing: -0.4px; line-height: 1; font-variant-numeric: tabular-nums; }
+    .stat-val .cur { font-size: 13px; color: var(--text-3); margin-left: 2px; font-weight: 600; }
+    .stat-lbl { font-size: 10px; color: var(--text-3); margin-top: 6px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
+    .promo-card { margin: 18px 14px 0; padding: 16px; background: var(--grad-card); border-radius: 18px; color: #fff; position: relative; overflow: hidden; box-shadow: 0 10px 28px rgba(157,107,255,0.32); cursor: pointer; }
+    .promo-card::before { content: ''; position: absolute; right: -40px; top: -40px; width: 160px; height: 160px; border-radius: 80px; background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%); }
+    .promo-card::after { content: ''; position: absolute; right: -20px; bottom: -30px; width: 100px; height: 100px; border-radius: 50px; background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%); }
+    .promo-body { position: relative; }
+    .promo-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+    .promo-title { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; margin-top: 6px; line-height: 1.2; max-width: 70%; }
+    .promo-btn-inline { margin-top: 14px; padding: 9px 16px; background: rgba(255,255,255,0.95); color: var(--brand-2); border: 0; border-radius: 999px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font); display: inline-flex; align-items: center; gap: 6px; }
+
+    .upcoming { display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); margin-bottom: 8px; cursor: pointer; transition: background 0.18s, transform 0.1s; }
+    .upcoming:hover { background: var(--card-strong); }
+    .upcoming:active { transform: scale(0.99); }
+    .upc-date { width: 50px; flex-shrink: 0; padding: 8px 0; text-align: center; background: var(--grad); color: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(221,88,197,0.28); }
+    .upc-day { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; opacity: 0.85; }
+    .upc-num { font-size: 18px; font-weight: 800; line-height: 1; margin-top: 2px; letter-spacing: -0.4px; }
+    .upc-body { flex: 1; min-width: 0; }
+    .upc-name { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
+    .upc-meta { font-size: 12px; color: var(--text-3); margin-top: 3px; }
+    .upc-time { color: var(--text); font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; }
+
+    .cert { padding: 16px; background: var(--grad-amber); border-radius: 18px; color: #fff; box-shadow: 0 8px 22px rgba(255,126,95,0.32); position: relative; overflow: hidden; }
+    .cert::before { content: ''; position: absolute; right: -30px; top: -30px; width: 120px; height: 120px; border-radius: 60px; background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%); }
+    .cert-body { position: relative; }
+    .cert-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+    .cert-name { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; margin-top: 4px; }
+    .cert-meta { font-size: 12px; opacity: 0.85; margin-top: 4px; }
+
+    /* ============== COACH SCREEN ============== */
+    .c-hero { padding: 8px 20px 24px; text-align: center; }
+    .c-hero-avatar { width: 112px; height: 112px; border-radius: 56px; background: var(--grad); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 38px; font-weight: 700; letter-spacing: -0.5px; box-shadow: 0 12px 40px rgba(221,88,197,0.32); border: 3px solid rgba(255,255,255,0.06); }
+    .c-hero-avatar.violet { background: linear-gradient(135deg,#9D6BFF,#4A1DAD); box-shadow: 0 12px 40px rgba(114,56,230,0.32); }
+    .c-hero-avatar.mint { background: linear-gradient(135deg,#34D399,#0D9488); box-shadow: 0 12px 40px rgba(16,185,129,0.28); }
+    .c-hero-avatar.peach { background: linear-gradient(135deg,#FFA770,#FF6B35); box-shadow: 0 12px 40px rgba(255,126,95,0.32); }
+    .c-hero-name { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; }
+    .c-hero-role { font-size: 14px; color: var(--text-2); margin-top: 6px; letter-spacing: -0.1px; }
+    .c-stats { margin: 0 16px 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .c-stat { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 14px 8px; text-align: center; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .c-stat-val { font-size: 19px; font-weight: 700; letter-spacing: -0.4px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+    .c-stat-val .star { color: var(--star); }
+    .c-stat-lbl { font-size: 11px; color: var(--text-3); margin-top: 3px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
+    .c-about { font-size: 15px; line-height: 1.45; color: var(--text-2); padding: 0 4px; }
+    .c-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; padding: 0 4px; }
+    .c-tag { padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; color: var(--text-2); background: var(--card); border: 1px solid var(--border); }
+
+    /* ============== PLACEHOLDER ============== */
+    .placeholder { padding: 60px 24px 24px; text-align: center; }
+    .ph-icon { width: 72px; height: 72px; border-radius: 24px; background: var(--soft-2); display: inline-flex; align-items: center; justify-content: center; color: var(--text-2); margin-bottom: 18px; }
+    .ph-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .ph-sub { font-size: 14px; color: var(--text-3); line-height: 1.4; max-width: 280px; margin: 0 auto; }
+
+    .home-eyebrow { font-size: 11px; color: var(--text-3); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 22px 20px 6px; }
+    .home-greeting { font-size: 28px; font-weight: 700; letter-spacing: -0.6px; padding: 0 20px 12px; line-height: 1.1; }
+    .home-cta { padding: 0 14px; }
+    .home-cta-card {
+      padding: 18px 18px; border-radius: 22px;
+      background: var(--grad);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(221,88,197,0.32);
+      display: flex; flex-direction: column; gap: 10px;
+      cursor: pointer; transition: transform 0.1s;
+    }
+    .home-cta-card:active { transform: scale(0.99); }
+    .home-cta-title { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; }
+    .home-cta-sub { font-size: 13px; opacity: 0.85; }
+    .home-cta-arrow { font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+
+    /* ============== BOTTOM ============== */
+    .bottom-bar { position: absolute; bottom: 0; left: 0; right: 0; background: var(--bottom-bg); backdrop-filter: blur(30px) saturate(1.5); -webkit-backdrop-filter: blur(30px) saturate(1.5); border-top: 1px solid var(--bottom-border); padding: 12px 16px 26px; z-index: 20; }
+    .bottom-row { display: flex; align-items: center; gap: 12px; }
+    .price-col { padding-left: 6px; }
+    .price-lbl { font-size: 11px; color: var(--text-3); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .price-val { font-size: 22px; font-weight: 800; letter-spacing: -0.6px; line-height: 1; margin-top: 3px; font-variant-numeric: tabular-nums; }
+    .price-old { font-size: 13px; color: var(--text-3); text-decoration: line-through; margin-left: 6px; font-weight: 500; }
+    .btn-cta { margin-left: auto; padding: 14px 22px; background: var(--grad); color: #fff; border: 0; border-radius: 999px; font-size: 15px; font-weight: 700; letter-spacing: -0.2px; box-shadow: 0 8px 20px rgba(221,88,197,0.35); cursor: pointer; font-family: var(--font); transition: transform 0.1s, box-shadow 0.2s, opacity 0.2s, background 0.2s; display: flex; align-items: center; gap: 8px; }
+    .btn-cta:active { transform: scale(0.97); }
+    .btn-cta.muted { background: var(--soft-2); color: var(--text-2); box-shadow: none; border: 1px solid var(--border-strong); }
+    .cta-hint { font-size: 11px; color: var(--text-3); margin-top: 8px; text-align: center; }
+
+    .btn-cta-pair { display: flex; gap: 8px; width: 100%; }
+    .btn-cta-pair .btn-cta { flex: 1; }
+
+    /* ============== TAB BAR ============== */
+    .tab-bar { position: absolute; bottom: 0; left: 0; right: 0; background: var(--tab-bar); backdrop-filter: blur(30px) saturate(1.4); -webkit-backdrop-filter: blur(30px) saturate(1.4); border-top: 1px solid var(--tab-bar-border); padding: 8px 8px 26px; display: grid; grid-template-columns: repeat(4, 1fr); z-index: 20; }
+    .tab { display: flex; flex-direction: column; align-items: center; gap: 4px; background: transparent; border: 0; padding: 6px 4px; color: var(--text-3); cursor: pointer; font-family: var(--font); transition: color 0.18s; }
+    .tab:hover { color: var(--text-2); }
+    .tab.active { color: var(--brand); }
+    .tab-label { font-size: 10px; font-weight: 600; letter-spacing: -0.04px; }
+
+    .home-indicator { position: absolute; bottom: 9px; left: 50%; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background: rgba(127,127,127,0.5); z-index: 40; pointer-events: none; }
+    .theme-dark .home-indicator { background: rgba(255,255,255,0.5); }
+
+    /* SUCCESS TOAST */
+    .toast {
+      position: absolute; top: 60px; left: 16px; right: 16px;
+      padding: 12px 16px;
+      background: rgba(16,185,129,0.95);
+      color: #fff; border-radius: 16px;
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 10px 28px rgba(16,185,129,0.4);
+      z-index: 50;
+      animation: toastIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    @keyframes toastIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+    .toast-icon { width: 24px; height: 24px; border-radius: 12px; background: #fff; color: var(--success); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+    .toast-text { font-size: 14px; font-weight: 600; flex: 1; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+
+  <script type="text/babel">
+    const { useState, useRef, useEffect, useMemo } = React;
+
+    /* ========== DATA ========== */
+    const TODAY = new Date(2026, 5, 13);
+
+    const COACHES = {
+      novikov:   { id: 'novikov',   name: 'Виктор Новиков',   initials: 'ВН', color: 'magenta', role: 'Главный тренер · 12 лет',         rating: 4.9, trainings: 1280, years: 12, about: 'Тренирует игроков от новичков (F-G) до продвинутого уровня (A-F). Специализируется на игровой технике и тактике парных матчей. Бывший игрок сборной СПб.', tags: ['Мини-группа','Игровая','Техника','Парные'] },
+      larionova: { id: 'larionova', name: 'Ирина Ларионова',  initials: 'ИЛ', color: 'violet',  role: 'Тренер · 8 лет',                  rating: 4.8, trainings: 860,  years: 8,  about: 'Работает с группами уровня C-D – D-E. Сильна в координации, отработке передвижений и подаче. Подходит и взрослым, и подросткам.', tags: ['Мини-группа','C-D – D-E','Подростки','Подача'] },
+      sokolova:  { id: 'sokolova',  name: 'Елена Соколова',   initials: 'ЕС', color: 'magenta', role: 'Тренер по технике · 5 лет',       rating: 4.7, trainings: 520,  years: 5,  about: 'Узкая специализация — техника удара и работа над ошибками. Индивидуальный подход, видеоразбор после занятий.', tags: ['Техника','Индивидуально','Видеоразбор'] },
+      kovalyova: { id: 'kovalyova', name: 'Анна Ковалёва',    initials: 'АК', color: 'mint',    role: 'Тренер · 3 года',                 rating: 4.8, trainings: 290,  years: 3,  about: 'Утренние разминки, общая физическая подготовка, лёгкие игровые форматы для всех уровней.', tags: ['Разминка','ОФП','Все уровни'] },
+      volkov:    { id: 'volkov',    name: 'Дмитрий Волков',   initials: 'ДВ', color: 'peach',   role: 'Тренер парных игр · 7 лет',       rating: 4.9, trainings: 720,  years: 7,  about: 'Эксперт по парным форматам. Учит читать игру партнёра, перемещаться синхронно, перекрывать половины корта.', tags: ['Парные','Микст','A-F','Стратегия'] },
+    };
+
+    const INITIAL_TRAININGS = [
+      { id: 't1', date: '2026-06-13', t: '09:00', tEnd: '10:00', dur: 60, name: 'Утренняя разминка',          coachId: 'kovalyova', loc: 'Печатный Двор', metro: '4 мин от м. Чкаловская',  level: null,    total: 12, taken: 8, booked: false, basePrice: 1500 },
+      { id: 't2', date: '2026-06-13', t: '11:00', tEnd: '12:30', dur: 90, name: 'Парная игра — продвинутые', coachId: 'volkov',    loc: 'Электросила',   metro: '6 мин от м. Электросила', level: 'A–F',   total: 4,  taken: 4, booked: true,  basePrice: 2400 },
+      { id: 't3', date: '2026-06-13', t: '14:00', tEnd: '15:15', dur: 75, name: 'Техника подачи',            coachId: 'sokolova',  loc: 'Печатный Двор', metro: '4 мин от м. Чкаловская',  level: 'F–G',   total: 6,  taken: 4, booked: false, basePrice: 1900 },
+      { id: 't4', date: '2026-06-13', t: '18:00', tEnd: '19:00', dur: 60, name: 'Свободная игра',            coachId: 'novikov',   loc: 'Электросила',   metro: '6 мин от м. Электросила', level: 'A–F',   total: 12, taken: 9, booked: false, basePrice: 1800 },
+      { id: 't5', date: '2026-06-13', t: '20:00', tEnd: '21:30', dur: 90, name: 'Мини-группа',               coachId: 'larionova', loc: 'Печатный Двор', metro: '4 мин от м. Чкаловская',  level: 'D–E',   total: 4,  taken: 2, booked: true,  basePrice: 1900 },
+    ];
+
+    const TARIFFS = [
+      { id: 'abonement', name: 'Списать с абонемента', sub: 'Осталось 6 занятий',     price: 0,     bonus: null,             variant: 'plain', recommend: 'РЕКОМЕНДУЕМ' },
+      { id: 'single',    name: 'Разовая тренировка',   sub: 'Без обязательств',      price: 1900,  bonus: null,             variant: 'plain' },
+      { id: 'pack4',     name: '4 занятия',            sub: 'Абонемент мини-группа', price: 7400,  bonus: 'Скидка 525 ₽',   variant: 'fancy-pkg' },
+      { id: 'pack8',     name: '8 занятий',            sub: 'Самый выгодный',        price: 14000, bonus: 'Скидка 1 200 ₽', variant: 'fancy-pkg-bold' },
+    ];
+
+    /* ========== HELPERS ========== */
+    const RU_MONTHS = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+    const RU_MONTHS_GEN = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+    const RU_DAYS_SHORT = ['пн','вт','ср','чт','пт','сб','вс'];
+    const RU_DAYS_LONG = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
+
+    const pad = (n) => String(n).padStart(2,'0');
+    const iso = (d) => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+    const addDays = (d, n) => { const r = new Date(d); r.setDate(r.getDate()+n); return r; };
+    const startOfWeek = (d) => { const x = d.getDay(); return addDays(d, x === 0 ? -6 : 1 - x); };
+    const sameDay = (a, b) => iso(a) === iso(b);
+
+    /* ========== ICONS ========== */
+    const ICN = {
+      back: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="m12 5-5 5 5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      filter: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3.5 5h13M5.5 10h9M7.5 15h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>,
+      settings: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.7"/><path d="M10 2v2M10 16v2M18 10h-2M4 10H2M15.7 4.3l-1.4 1.4M5.7 14.3l-1.4 1.4M15.7 15.7l-1.4-1.4M5.7 5.7l-1.4-1.4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/></svg>,
+      heart: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16.5s-6-3.7-6-8a3.5 3.5 0 0 1 6-2.45A3.5 3.5 0 0 1 16 8.5c0 4.3-6 8-6 8Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/></svg>,
+      share: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 13V4m0 0L7 7m3-3 3 3M5 11v4a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      chL: <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M8.5 3.5 5 7l3.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      chR: <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m5.5 3.5 3.5 3.5-3.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      chev: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="m6.5 4 4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      arrR: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.5 9h11m0 0L10.5 5m4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      users: <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm-4 4a4 4 0 0 1 8 0v.5H3V11Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg>,
+      ck: <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="m2.5 5.5 2 2 4-4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      ckBig: <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3 7.5 2.5 2.5L11 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      ckTiny: <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="m2 4.5 1.5 1.5L7 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      wallet: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4.5" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.6"/><path d="M2 7.5h14M12 11h2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>,
+      gift: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2.5" y="6.5" width="13" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M2 11h14M9 6v9.5M9 6s-3-3-4-1.5S6.5 6 9 6Zm0 0s3-3 4-1.5S11.5 6 9 6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      cardIcon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="3" width="13" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="M1.5 6h13" stroke="currentColor" strokeWidth="1.5"/></svg>,
+      personSm: <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="6" r="2.5"/><path d="M3 13.5a5 5 0 0 1 10 0v.5H3v-.5Z"/></svg>,
+      person: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6.5" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M3.5 15a5.5 5.5 0 0 1 11 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      phone: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="4.5" y="2" width="9" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M7.5 13h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      mail: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2.5" y="4" width="13" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><path d="m3 5 6 4.5L15 5" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
+      tg: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15.5 3 1.5 8.5l4.2 1.3M15.5 3l-2 11-4.4-3.4M15.5 3 5.7 9.8M5.7 9.8l.3 3.7L8.2 11" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round"/></svg>,
+      cake: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 14V9.5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2V14M3 14h12M9 7V4m0 0c-.5-.5-1-1.2 0-2 1 .8.5 1.5 0 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      sparkleSm: <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 2l1.5 4.5L15 8l-4.5 1.5L9 14l-1.5-4.5L3 8l4.5-1.5L9 2Z"/></svg>,
+      racket: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="6.5" cy="6.5" r="4" stroke="currentColor" strokeWidth="1.5"/><path d="m9.5 9.5 5 5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/></svg>,
+      shoe: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 11h2l2-4 4 1 3 2h3v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
+      water: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2s5 5 5 9a5 5 0 0 1-10 0c0-4 5-9 5-9Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
+      bell: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 11h10M8 2v1.5m5 7.5V8a5 5 0 0 0-10 0v3m4 1v.5a1 1 0 0 0 2 0V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      shieldIcon: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2 3 3.5v4.5c0 3 2 5.5 5 6.5 3-1 5-3.5 5-6.5V3.5L8 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>,
+      lifebuoy: <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5"/><circle cx="8" cy="8" r="2.5" stroke="currentColor" strokeWidth="1.5"/><path d="m3.5 3.5 2 2m5 5 2 2m0-9-2 2m-5 5-2 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
+      sparkleIcon: <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 0l1.5 5.5L14 7l-5.5 1.5L7 14l-1.5-5.5L0 7l5.5-1.5L7 0Z"/></svg>,
+      heartFill: <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 12s-5-2.8-5-6.5A2.5 2.5 0 0 1 7 4a2.5 2.5 0 0 1 5 1.5C12 9.2 7 12 7 12Z"/></svg>,
+      ckFilled: <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M6 11 3 8l1-1 2 2 6-6 1 1-7 7Z"/></svg>,
+      msg: <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6l-3 3V4Z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+      // Tab icons
+      home: (f) => f
+        ? <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3.5 10v10.5A.5.5 0 0 0 4 21h5v-6h6v6h5a.5.5 0 0 0 .5-.5V10L12 3Z"/></svg>
+        : <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3.5 10 12 3l8.5 7v10.5a.5.5 0 0 1-.5.5h-5v-6H9v6H4a.5.5 0 0 1-.5-.5V10Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/></svg>,
+      cal: (f) => f
+        ? <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 5h14a1 1 0 0 1 1 1v3H4V6a1 1 0 0 1 1-1Zm-1 5h16v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9Zm4-7v3M16 3v3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/><circle cx="8" cy="14.5" r="1.3" fill="white"/></svg>
+        : <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5.5" width="17" height="15" rx="2" stroke="currentColor" strokeWidth="1.7"/><path d="M3.5 9.5h17M8 3.5v4M16 3.5v4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/></svg>,
+      shield: (f) => f
+        ? <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 5 5.5v6c0 4.4 2.9 7.7 7 9 4.1-1.3 7-4.6 7-9v-6L12 3Z"/></svg>
+        : <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3.5 5.5 6v5.5c0 4.1 2.7 7.2 6.5 8.5 3.8-1.3 6.5-4.4 6.5-8.5V6L12 3.5Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/></svg>,
+      tabPerson: (f) => f
+        ? <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0v.5H4V20Z"/></svg>
+        : <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.7"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/></svg>,
+    };
+
+    /* ========== SHARED COMPONENTS ========== */
+    function StatusBar({ overHero }) {
+      return (
+        <div className={`status-bar${overHero ? ' over-hero' : ''}`}>
+          <div>9:41</div><div className="island" />
+          <div style={{display:'flex', gap:6, alignItems:'center'}}>
+            <svg width="18" height="11" viewBox="0 0 18 11" fill="currentColor"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="11" rx="1"/></svg>
+            <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><path d="M8 2.5A11 11 0 0 0 .5 5.4l1.4 1.4a9 9 0 0 1 12.2 0l1.4-1.4A11 11 0 0 0 8 2.5Zm0 4A6 6 0 0 0 3.7 8L5.1 9.4a4 4 0 0 1 5.8 0L12.3 8A6 6 0 0 0 8 6.5ZM6.5 10A2.2 2.2 0 0 0 8 11a2.2 2.2 0 0 0 1.5-1A2 2 0 0 0 8 9.5 2 2 0 0 0 6.5 10Z"/></svg>
+            <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="currentColor" strokeOpacity="0.5"/><rect x="2" y="2" width="19" height="7" rx="1.5" fill="currentColor"/><rect x="23.5" y="3.5" width="1.5" height="4" rx="0.75" fill="currentColor" fillOpacity="0.5"/></svg>
+          </div>
+        </div>
+      );
+    }
+
+    function TabBar({ active, onChange }) {
+      const tabs = [
+        { id: 'home',    label: 'Главная',  icon: ICN.home },
+        { id: 'sched',   label: 'Запись',   icon: ICN.cal },
+        { id: 'club',    label: 'Клуб',     icon: ICN.shield },
+        { id: 'profile', label: 'Профиль',  icon: ICN.tabPerson },
+      ];
+      return (
+        <div className="tab-bar">
+          {tabs.map(t => (
+            <button key={t.id} className={`tab${active === t.id ? ' active' : ''}`} onClick={() => onChange(t.id)}>
+              {t.icon(active === t.id)}
+              <span className="tab-label">{t.label}</span>
+            </button>
+          ))}
+        </div>
+      );
+    }
+
+    /* ========== HOME SCREEN ========== */
+    function HomeScreen({ nav, onScheduleTab }) {
+      return (
+        <React.Fragment>
+          <StatusBar />
+          <div className="scroll">
+            <div className="home-eyebrow">Доброе утро</div>
+            <div className="home-greeting">Привет, Вика!</div>
+            <div className="home-cta">
+              <div className="home-cta-card" onClick={onScheduleTab}>
+                <div>
+                  <div className="home-cta-title">Найти тренировку</div>
+                  <div className="home-cta-sub">Сегодня в клубе 5 тренировок, мест свободно — много</div>
+                </div>
+                <div className="home-cta-arrow">К расписанию {ICN.arrR}</div>
+              </div>
+            </div>
+            <div className="section-head"><div className="section-title">Сегодня</div><div className="section-meta">13 июня</div></div>
+            <div className="placeholder">
+              <div className="ph-icon">{ICN.sparkleSm}</div>
+              <div className="ph-title">Главный экран</div>
+              <div className="ph-sub">Тут будет дайджест: твои записи, новости, акции, рекомендации</div>
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    /* ========== CLUB SCREEN ========== */
+    function ClubScreen({ nav }) {
+      const list = Object.values(COACHES);
+      return (
+        <React.Fragment>
+          <StatusBar />
+          <div className="nav">
+            <div style={{width: 40}} />
+            <div className="nav-title">Клуб</div>
+            <button className="nav-btn">{ICN.filter}</button>
+          </div>
+          <div className="scroll">
+            <div className="section-head" style={{padding: '8px 20px 8px'}}>
+              <div className="section-title">Тренеры</div>
+              <div className="section-meta">{list.length} человек</div>
+            </div>
+            <div className="cards">
+              {list.map(c => (
+                <div key={c.id} className="coach-card" onClick={() => nav.push('coach', { coachId: c.id })} style={{margin: 0}}>
+                  <div className={`avatar lg ${c.color}`}>{c.initials}</div>
+                  <div className="coach-body">
+                    <div className="coach-name">{c.name}</div>
+                    <div className="coach-role">{c.role} · ★ {c.rating}</div>
+                  </div>
+                  <span className="chev">{ICN.chev}</span>
+                </div>
+              ))}
+            </div>
+            <div className="placeholder">
+              <div className="ph-title">Программы и локации</div>
+              <div className="ph-sub">Здесь появится каталог программ, аренда зала, командные форматы</div>
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    /* ========== SCHEDULE SCREEN ========== */
+    function SchedCard({ tr, onClick, onBookToggle }) {
+      const free = tr.total - tr.taken;
+      const isSoldOut = free <= 0 && !tr.booked;
+      const lowSlots = free > 0 && free <= 2 && !tr.booked;
+      const coach = COACHES[tr.coachId];
+
+      let metaContent;
+      if (tr.booked) {
+        metaContent = (
+          <div className="card-meta">
+            <span className="booked-pill"><span className="ck">{ICN.ck}</span>Записан</span>
+            <span style={{color: 'var(--text-3)'}}>{tr.taken} / {tr.total}</span>
+          </div>
+        );
+      } else if (isSoldOut) {
+        metaContent = (<div className="card-meta"><span className="meta-icon">{ICN.users}</span><span>Мест нет</span></div>);
+      } else if (lowSlots) {
+        metaContent = (<div className="card-meta meta-warn"><span className="meta-icon">{ICN.users}</span><span>осталось {free}</span></div>);
+      } else {
+        metaContent = (<div className="card-meta"><span className="meta-icon">{ICN.users}</span><span>{tr.taken} / {tr.total} мест</span></div>);
+      }
+
+      let button;
+      if (tr.booked) {
+        button = <button className="btn btn-secondary" onClick={(e)=>{e.stopPropagation(); onBookToggle(tr.id);}}>Отменить</button>;
+      } else if (isSoldOut) {
+        button = <button className="btn btn-secondary" onClick={(e)=>e.stopPropagation()}>В лист</button>;
+      } else {
+        button = <button className="btn btn-primary" onClick={(e)=>{e.stopPropagation(); onClick();}}>Записаться</button>;
+      }
+
+      return (
+        <div className="card" onClick={onClick}>
+          <div className="card-time-col">
+            <div className="card-time">{tr.t}</div>
+            <div className="card-dur">{tr.dur} мин</div>
+          </div>
+          <div className="card-body">
+            <div className="card-name">{tr.name}{tr.level ? <span style={{color:'var(--text-3)', fontWeight: 500, marginLeft: 8}}>· {tr.level}</span> : null}</div>
+            <div className="card-coach">
+              <div className={`avatar sm ${coach.color}`}>{coach.initials}</div>
+              <span className="coach-link">{coach.name}</span>
+            </div>
+            {metaContent}
+          </div>
+          <div className="card-action">{button}</div>
+        </div>
+      );
+    }
+
+    function ScheduleScreen({ nav, trainings, onBookToggle }) {
+      const [view, setView] = useState('all');
+      const [selected, setSelected] = useState(TODAY);
+      const [weekStart, setWeekStart] = useState(startOfWeek(TODAY));
+
+      const days = useMemo(() => Array.from({length: 7}, (_, i) => addDays(weekStart, i)), [weekStart]);
+      const dayList = trainings.filter(t => t.date === iso(selected));
+      const filtered = view === 'mine' ? dayList.filter(t => t.booked) : dayList;
+      const countOn = (d) => trainings.filter(t => t.date === iso(d)).length;
+      const monthLabel = `${RU_MONTHS[selected.getMonth()]} ${selected.getFullYear()}`;
+      const isTodaySelected = sameDay(selected, TODAY);
+
+      return (
+        <React.Fragment>
+          <StatusBar />
+          <div className="nav">
+            <button className="nav-btn" aria-label="Назад">{ICN.back}</button>
+            <div className="nav-title">Расписание</div>
+            <button className="nav-btn" aria-label="Фильтры">{ICN.filter}</button>
+          </div>
+          <div className="scroll">
+            <div className="seg">
+              <div className={`seg-thumb${view === 'mine' ? ' right' : ''}`} />
+              <button className={`seg-btn${view === 'all' ? ' active' : ''}`} onClick={() => setView('all')}>Тренировки</button>
+              <button className={`seg-btn${view === 'mine' ? ' active' : ''}`} onClick={() => setView('mine')}>Мои тренировки</button>
+            </div>
+            <div className="month-row">
+              <div className="month-title">{monthLabel}</div>
+              <div className="month-nav">
+                <button className="icon-btn" onClick={() => setWeekStart(addDays(weekStart, -7))}>{ICN.chL}</button>
+                <button className="icon-btn" onClick={() => setWeekStart(addDays(weekStart, 7))}>{ICN.chR}</button>
+              </div>
+            </div>
+            <div className="week-strip">
+              {days.map((d, i) => {
+                const t = sameDay(d, TODAY);
+                const s = sameDay(d, selected);
+                const has = countOn(d) > 0;
+                return (
+                  <button key={iso(d)} className={`day${t ? ' today' : ''}${s ? ' selected' : ''}`} onClick={() => setSelected(d)}>
+                    <span className="day-name">{RU_DAYS_SHORT[i]}</span>
+                    <span className="day-num">{d.getDate()}</span>
+                    {has && <span className="day-dot" />}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="section-head">
+              <div className="section-title">{isTodaySelected ? 'Сегодня' : `${selected.getDate()} ${RU_MONTHS[selected.getMonth()].toLowerCase()}`}</div>
+              <div className="section-meta">{filtered.length === 0 ? '— нет' : `${filtered.length} ${filtered.length === 1 ? 'тренировка' : (filtered.length < 5 ? 'тренировки' : 'тренировок')}`}</div>
+            </div>
+            {filtered.length === 0 ? (
+              <div className="placeholder" style={{padding: '32px 24px'}}>
+                <div className="ph-title">{view === 'mine' ? 'Записей пока нет' : 'Тренировок нет'}</div>
+                <div className="ph-sub">{view === 'mine' ? 'Запишитесь — появится здесь' : 'На эту дату ничего не запланировано'}</div>
+              </div>
+            ) : (
+              <div className="cards">
+                {filtered.map(t => <SchedCard key={t.id} tr={t} onClick={() => nav.push('training', { trainingId: t.id })} onBookToggle={onBookToggle} />)}
+              </div>
+            )}
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    /* ========== TRAINING DETAIL ========== */
+    function TrainingDetailScreen({ nav, trainingId, trainings, onBookToggle }) {
+      const tr = trainings.find(t => t.id === trainingId) || trainings[0];
+      const coach = COACHES[tr.coachId];
+      const free = tr.total - tr.taken;
+      const dots = [];
+      for (let i = 0; i < tr.total; i++) {
+        let cls = 'slot-dot';
+        if (i < tr.taken) cls += ' taken';
+        if (tr.booked && i === tr.taken - 1) cls = 'slot-dot you';
+        dots.push(<span key={i} className={cls} />);
+      }
+
+      return (
+        <React.Fragment>
+          <div className="scroll">
+            <StatusBar overHero />
+            <div className="hero">
+              <div className="hero-nav">
+                <button className="glass-btn" onClick={nav.pop} aria-label="Назад">{ICN.back}</button>
+                <div className="glass-btns">
+                  <button className="glass-btn" aria-label="В избранное">{ICN.heart}</button>
+                  <button className="glass-btn" aria-label="Поделиться">{ICN.share}</button>
+                </div>
+              </div>
+              <div className="hero-content">
+                <div className="hero-tags">
+                  <span className="hero-tag">{tr.name.split('—')[0].split(':')[0].trim()}</span>
+                  {tr.level && <span className="hero-tag">{tr.level}</span>}
+                </div>
+                <div className="hero-time">{tr.t} — {tr.tEnd}</div>
+                <div className="hero-meta">{RU_DAYS_LONG[(new Date(tr.date).getDay() + 6) % 7]}, {tr.date.split('-')[2]} {RU_MONTHS_GEN[parseInt(tr.date.split('-')[1]) - 1]} · {tr.dur} минут</div>
+              </div>
+            </div>
+
+            <div className="content">
+              <div className="title">{tr.name}</div>
+              <div className="subtitle">Лёгкая разминка, отработка ударов, парные игры до конца</div>
+
+              <div className="coach-card" onClick={() => nav.push('coach', { coachId: coach.id })}>
+                <div className={`avatar lg ${coach.color}`}>{coach.initials}</div>
+                <div className="coach-body">
+                  <div className="coach-name">{coach.name}</div>
+                  <div className="coach-role">{coach.role} · ★ {coach.rating}</div>
+                </div>
+                <span className="chev">{ICN.chev}</span>
+              </div>
+
+              <div className="tiles">
+                <div className="tile">
+                  <div className="tile-label">Зал</div>
+                  <div className="tile-val">{tr.loc}</div>
+                  <div className="tile-sub">{tr.metro}</div>
+                </div>
+                <div className="tile">
+                  <div className="tile-label">Уровень</div>
+                  <div className="tile-val">{tr.level || 'Все'}</div>
+                  <div className="tile-sub">{tr.level ? 'По вашему уровню' : 'Подходит всем'}</div>
+                </div>
+              </div>
+
+              <div className="section">
+                <div className="sec-title">Кто идёт</div>
+                <div className="participants">
+                  <div className="slots-row">
+                    <div>
+                      <div className="slots-count"><span className="num">{tr.taken}</span> из {tr.total} мест занято</div>
+                      <div className="slots-free">{free > 0 ? `Свободно ещё ${free}` : 'Мест нет'}</div>
+                    </div>
+                    <div className="slots-dots">{dots}</div>
+                  </div>
+                  <div className="avatars-row">
+                    <div className="avatar sm peach">МА</div>
+                    <div className="avatar sm violet">ЕП</div>
+                    {free > 0 && <button className="invite">+</button>}
+                    {free > 0 && <div className="more">+{free} свободно</div>}
+                  </div>
+                </div>
+              </div>
+
+              <div className="section">
+                <div className="sec-title">Что взять с собой</div>
+                <div className="gear-list">
+                  <div className="gear-item">
+                    <div className="gear-icon">{ICN.racket}</div>
+                    <div className="gear-text"><div className="gear-name">Ракетка</div><div className="gear-note">Аренда в зале — 200 ₽</div></div>
+                  </div>
+                  <div className="gear-item">
+                    <div className="gear-icon">{ICN.shoe}</div>
+                    <div className="gear-text"><div className="gear-name">Сменная обувь</div><div className="gear-note">Со светлой подошвой</div></div>
+                  </div>
+                  <div className="gear-item">
+                    <div className="gear-icon">{ICN.water}</div>
+                    <div className="gear-text"><div className="gear-name">Вода</div><div className="gear-note">Бесплатно у входа</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bottom-bar">
+            <div className="bottom-row">
+              <div className="price-col">
+                <div className="price-lbl">К оплате</div>
+                <div className="price-val">{tr.booked ? '0 ₽' : tr.basePrice.toLocaleString('ru-RU') + ' ₽'}</div>
+              </div>
+              {tr.booked
+                ? <button className="btn-cta" onClick={() => { onBookToggle(tr.id); nav.pop(); }}>Отменить запись</button>
+                : <button className="btn-cta" onClick={() => nav.push('payment', { trainingId: tr.id })}>Записаться {ICN.arrR}</button>}
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    /* ========== PAYMENT ========== */
+    function ProfileBanner({ filled, total }) {
+      const dots = [];
+      for (let i = 0; i < total; i++) dots.push(<span key={i} className={`banner-progress-dot${i < filled ? ' on' : ''}`} />);
+      return (
+        <div className="banner">
+          <div className="banner-icon">{ICN.sparkleSm}</div>
+          <div className="banner-text">
+            <div className="banner-title">Расскажите о себе — это для подтверждения</div>
+            <div className="banner-sub">Клуб использует данные только чтобы напомнить о тренировке.</div>
+            <div className="banner-progress"><div className="banner-progress-dots">{dots}</div>{filled} из {total}</div>
+          </div>
+        </div>
+      );
+    }
+
+    function FormRow({ icon, label, value, onChange, placeholder, helper, hint, optional, type='text', validate }) {
+      const filled = (value || '').trim().length > 0;
+      const valid = optional ? filled : (filled && (validate ? validate(value) : true));
+      const showHint = filled && !valid && hint;
+      return (
+        <div className={`form-row${filled ? ' filled' : ''}${valid ? ' valid' : ''}`}>
+          <div className="form-icon">{icon}</div>
+          <div className="form-body">
+            <div className="form-label">{label}{optional && <span className="opt">— необязательно</span>}</div>
+            <input type={type} className="form-input" value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} />
+            {showHint && <div className="form-helper" style={{color: 'var(--warning)', fontWeight: 600}}>{hint}</div>}
+            {helper && !filled && <div className="form-helper">{helper}</div>}
+          </div>
+          {valid && <div className="form-check">{ICN.ckBig}</div>}
+        </div>
+      );
+    }
+
+    function PaymentScreen({ nav, trainingId, trainings, profile, setProfile, onBookConfirm }) {
+      const tr = trainings.find(t => t.id === trainingId);
+      const [selected, setSelected] = useState('single');
+      const formRef = useRef(null);
+
+      const pf = profile;
+      const setPf = (next) => setProfile(next);
+
+      const nameOk  = pf.name.trim().length >= 3;
+      const phoneOk = pf.phone.replace(/\D/g,'').length >= 10;
+      const emailOk = /^\S+@\S+\.\S+$/.test(pf.email.trim());
+      const tgOk    = pf.tg.trim().replace(/^@/, '').length >= 3;
+      const requiredFilled = nameOk && phoneOk && emailOk && tgOk;
+      const requiredCount = (nameOk ? 1 : 0) + (phoneOk ? 1 : 0) + (emailOk ? 1 : 0) + (tgOk ? 1 : 0);
+      const TOTAL = 4;
+
+      const tariff = TARIFFS.find(t => t.id === selected);
+      const deposit = 200;
+      const finalPrice = Math.max(0, tariff.price - deposit);
+      const oldPrice = tariff.price > 0 ? tariff.price : null;
+
+      const handleCta = () => {
+        if (!requiredFilled) {
+          formRef.current && formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        onBookConfirm(tr.id);
+      };
+
+      return (
+        <React.Fragment>
+          <div className="scroll">
+            <StatusBar />
+            <div className="nav">
+              <button className="nav-btn" onClick={nav.pop}>{ICN.back}</button>
+              <div className="nav-title">Оплата</div>
+              <div style={{width: 40}} />
+            </div>
+
+            <div className="order">
+              <div className="order-thumb">{tr.level || tr.name.slice(0, 3).toUpperCase()}</div>
+              <div className="order-body">
+                <div className="order-name">{tr.name}</div>
+                <div className="order-meta">{RU_DAYS_LONG[(new Date(tr.date).getDay() + 6) % 7].slice(0,2)}, {tr.date.split('-')[2]} {RU_MONTHS_GEN[parseInt(tr.date.split('-')[1]) - 1]} · {tr.loc}</div>
+              </div>
+              <div className="order-time">{tr.t}</div>
+            </div>
+
+            {!requiredFilled && <ProfileBanner filled={requiredCount} total={TOTAL} />}
+
+            <div className="pay-section">
+              <div className="pay-section-head">
+                <div className="pay-section-title">Депозит</div>
+                <div className="pay-section-meta">200 ₽ на балансе</div>
+              </div>
+              <div className="deposit">
+                <div className="deposit-icon">{ICN.wallet}</div>
+                <div className="deposit-text">
+                  <div className="deposit-name">Применяется автоматически</div>
+                  <div className="deposit-sub">Уменьшит сумму к оплате</div>
+                </div>
+                <div className="deposit-val">−200 ₽</div>
+              </div>
+            </div>
+
+            <div className="pay-section">
+              <div className="pay-section-head"><div className="pay-section-title">Способ оплаты</div></div>
+              <div className="tariffs">
+                {TARIFFS.map(t => {
+                  const isSel = selected === t.id;
+                  return (
+                    <div key={t.id} className={`tariff ${t.variant}${isSel ? ' selected' : ''}`} onClick={() => setSelected(t.id)}>
+                      {t.recommend && <div className="tariff-badge">{t.recommend}</div>}
+                      <div className="tariff-radio">{isSel && ICN.ck}</div>
+                      <div className="tariff-body">
+                        <div className="tariff-name">{t.name}</div>
+                        <div className="tariff-sub">{t.sub}</div>
+                      </div>
+                      <div className="tariff-price-col">
+                        <div className="tariff-price">{t.price === 0 ? '0 ₽' : t.price.toLocaleString('ru-RU') + ' ₽'}</div>
+                        {t.bonus && <div className="tariff-bonus" style={(t.variant !== 'plain') ? {color: '#fff', opacity: 0.95} : undefined}>{t.bonus}</div>}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="pay-section">
+              <div className="addons">
+                <div className="addons-icon">{ICN.gift}</div>
+                <div className="addons-text"><div className="addons-name">Плюшки к заказу</div><div className="addons-sub">Ракетка, форма, протеин — от 200 ₽</div></div>
+                <span style={{color:'var(--text-3)'}}>{ICN.chev}</span>
+              </div>
+            </div>
+
+            <div className="pay-section" ref={formRef}>
+              <div className="pay-section-head">
+                <div className="pay-section-title">Профиль</div>
+                {requiredFilled
+                  ? <div className="pay-section-meta ok">{ICN.ck} Готово</div>
+                  : <div className="pay-section-meta warn">{requiredCount} / {TOTAL}</div>}
+              </div>
+              {requiredFilled ? (
+                <div className="profile-row">
+                  <div className="row">
+                    <div className="row-icon gray">{ICN.personSm}</div>
+                    <div className="row-body">
+                      <div className="row-name">{pf.name}</div>
+                      <div className="row-sub">{pf.phone} · {pf.email} · {pf.tg}</div>
+                    </div>
+                    <span className="row-pill"><span className="ck">{ICN.ckTiny}</span>заполнен</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="profile-form">
+                  <FormRow icon={ICN.person} label="Имя и фамилия" value={pf.name}  onChange={(v) => setPf({...pf, name: v})}  placeholder="Например, Анна Иванова" helper="Как в паспорте — для договора оферты" hint="Минимум 3 буквы" validate={(v) => v.trim().length >= 3} />
+                  <FormRow icon={ICN.phone}  label="Телефон"        value={pf.phone} onChange={(v) => setPf({...pf, phone: v})} placeholder="+7 (___) ___-__-__"      helper="Чтобы напомнить за день" hint="Введите номер полностью — 10 или 11 цифр" type="tel" validate={(v) => v.replace(/\D/g,'').length >= 10} />
+                  <FormRow icon={ICN.mail}   label="Почта"          value={pf.email} onChange={(v) => setPf({...pf, email: v})} placeholder="anna@example.com"          helper="Сюда придёт чек и подтверждение" hint="Нужно так: имя@домен.зона" type="email" validate={(v) => /^\S+@\S+\.\S+$/.test(v.trim())} />
+                  <FormRow icon={ICN.tg}     label="Телеграм"       value={pf.tg}    onChange={(v) => setPf({...pf, tg: v})}    placeholder="@username"                 helper="Например, @vika_sh" hint="Не меньше 3 символов после @" validate={(v) => v.trim().replace(/^@/, '').length >= 3} />
+                  <FormRow icon={ICN.cake}   label="Дата рождения"  value={pf.birth} onChange={(v) => setPf({...pf, birth: v})} placeholder="дд.мм.гггг" optional />
+                </div>
+              )}
+            </div>
+
+            <div className="pay-section">
+              <div className="pay-section-head"><div className="pay-section-title">Метод платежа</div></div>
+              <div className="profile-row">
+                <div className="row">
+                  <div className="row-icon red">{ICN.cardIcon}</div>
+                  <div className="row-body"><div className="row-name">Альфа Банк</div><div className="row-sub">СБП · моментально</div></div>
+                  <span className="row-end">Изменить {ICN.chev}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pay-section">
+              <div className="pay-section-head"><div className="pay-section-title">Промокод</div></div>
+              <div className="promo">
+                <input className="promo-input" placeholder="Введите код" />
+                <button className="promo-btn">Применить</button>
+              </div>
+            </div>
+          </div>
+
+          <div className="bottom-bar">
+            <div className="bottom-row">
+              <div className="price-col">
+                <div className="price-lbl">К оплате</div>
+                <div className="price-val">
+                  {finalPrice.toLocaleString('ru-RU')} ₽
+                  {oldPrice && finalPrice !== oldPrice && <span className="price-old">{oldPrice.toLocaleString('ru-RU')} ₽</span>}
+                </div>
+              </div>
+              {requiredFilled
+                ? <button className="btn-cta" onClick={handleCta}>Оплатить {ICN.arrR}</button>
+                : <button className="btn-cta muted" onClick={handleCta}>Заполните профиль</button>}
+            </div>
+            {!requiredFilled && <div className="cta-hint">{TOTAL - requiredCount} {(TOTAL - requiredCount) === 1 ? 'поле' : ((TOTAL - requiredCount) < 5 ? 'поля' : 'полей')} осталось · меньше минуты</div>}
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    /* ========== PROFILE SCREEN ========== */
+    function ProfileScreen({ nav, trainings }) {
+      const myUpcoming = trainings.filter(t => t.booked).slice(0, 2);
+      return (
+        <React.Fragment>
+          <StatusBar />
+          <div className="nav">
+            <div style={{width: 40}} />
+            <div className="nav-title">Профиль</div>
+            <button className="nav-btn">{ICN.settings}</button>
+          </div>
+          <div className="scroll">
+            <div className="p-hero">
+              <div className="p-hero-avatar-wrap">
+                <div className="p-hero-avatar">ВШ</div>
+                <div className="level-chip">F–G</div>
+              </div>
+              <div className="p-hero-name">Вика Шаханина</div>
+              <div className="p-hero-handle">@vika_sh · в клубе с июня 2026</div>
+            </div>
+
+            <div className="stats">
+              <div className="stat"><div className="stat-val">200<span className="cur"> ₽</span></div><div className="stat-lbl">Депозит</div></div>
+              <div className="stat"><div className="stat-val">47</div><div className="stat-lbl">Тренировок</div></div>
+              <div className="stat"><div className="stat-val">6<span className="cur"> / 8</span></div><div className="stat-lbl">Абонемент</div></div>
+            </div>
+
+            <div className="promo-card" onClick={() => nav.switchTo('sched')}>
+              <div className="promo-body">
+                <div className="promo-eyebrow">Готовы перейти выше?</div>
+                <div className="promo-title">Прокачайте уровень до E с пакетом «8 занятий»</div>
+                <button className="promo-btn-inline">Подобрать {ICN.arrR}</button>
+              </div>
+            </div>
+
+            <div className="section-head small">
+              <div className="section-title">Ближайшие записи</div>
+              <div className="section-meta">Все ({myUpcoming.length}) →</div>
+            </div>
+            <div className="cards">
+              {myUpcoming.length === 0 ? (
+                <div className="placeholder" style={{padding: '24px'}}>
+                  <div className="ph-title">Записей пока нет</div>
+                  <div className="ph-sub">Запишитесь на тренировку из расписания</div>
+                </div>
+              ) : myUpcoming.map(t => {
+                const c = COACHES[t.coachId];
+                return (
+                  <div key={t.id} className="upcoming" onClick={() => nav.push('training', { trainingId: t.id })}>
+                    <div className="upc-date"><div className="upc-day">{RU_DAYS_SHORT[(new Date(t.date).getDay()+6)%7].toUpperCase()}</div><div className="upc-num">{t.date.split('-')[2]}</div></div>
+                    <div className="upc-body">
+                      <div className="upc-name">{t.name}{t.level ? ` · ${t.level}` : ''}</div>
+                      <div className="upc-meta">{t.loc} · {c.name}</div>
+                    </div>
+                    <div className="upc-time">{t.t}</div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="section-head small"><div className="section-title">Сертификаты</div><div className="section-meta">Купить →</div></div>
+            <div className="cards">
+              <div className="cert">
+                <div className="cert-body">
+                  <div className="cert-eyebrow">Подарочный сертификат</div>
+                  <div className="cert-name">«4 занятия» от Михаила</div>
+                  <div className="cert-meta">Действует до 31 декабря 2026</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="section-head small"><div className="section-title">Аккаунт</div></div>
+            <div className="cards">
+              <div className="profile-row">
+                <div className="row"><div className="row-icon green">{ICN.ckFilled}</div><div className="row-body"><div className="row-name">История тренировок</div><div className="row-sub">47 завершённых</div></div><span className="row-end">{ICN.chev}</span></div>
+                <div className="row"><div className="row-icon violet">{ICN.sparkleIcon}</div><div className="row-body"><div className="row-name">Уровень и прогресс</div><div className="row-sub">F–G · до E осталось 12 игр</div></div><span className="row-end">{ICN.chev}</span></div>
+                <div className="row"><div className="row-icon peach">{ICN.heartFill}</div><div className="row-body"><div className="row-name">Любимые тренеры</div><div className="row-sub">3 в избранном</div></div><span className="row-end">{ICN.chev}</span></div>
+              </div>
+            </div>
+
+            <div className="section-head small"><div className="section-title">Настройки</div></div>
+            <div className="cards" style={{paddingBottom: 12}}>
+              <div className="profile-row">
+                <div className="row"><div className="row-icon gray">{ICN.bell}</div><div className="row-body"><div className="row-name">Уведомления</div><div className="row-sub">Напоминания, фидбек</div></div><span className="row-end">{ICN.chev}</span></div>
+                <div className="row"><div className="row-icon gray">{ICN.shieldIcon}</div><div className="row-body"><div className="row-name">Приватность</div><div className="row-sub">Кто видит ваш профиль</div></div><span className="row-end">{ICN.chev}</span></div>
+                <div className="row"><div className="row-icon gray">{ICN.lifebuoy}</div><div className="row-body"><div className="row-name">Поддержка</div><div className="row-sub">Чат с менеджером</div></div><span className="row-end">{ICN.chev}</span></div>
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    /* ========== COACH SCREEN ========== */
+    function CoachScreen({ nav, coachId, trainings }) {
+      const c = COACHES[coachId];
+      const upc = trainings.filter(t => t.coachId === coachId);
+      return (
+        <React.Fragment>
+          <StatusBar />
+          <div className="nav">
+            <button className="nav-btn" onClick={nav.pop}>{ICN.back}</button>
+            <div className="nav-title">Тренер</div>
+            <button className="nav-btn">{ICN.share}</button>
+          </div>
+          <div className="scroll">
+            <div className="c-hero">
+              <div className={`c-hero-avatar ${c.color}`}>{c.initials}</div>
+              <div className="c-hero-name">{c.name}</div>
+              <div className="c-hero-role">{c.role}</div>
+            </div>
+            <div className="c-stats">
+              <div className="c-stat"><div className="c-stat-val"><span className="star">★</span>{c.rating.toFixed(1)}</div><div className="c-stat-lbl">Рейтинг</div></div>
+              <div className="c-stat"><div className="c-stat-val">{c.trainings.toLocaleString('ru-RU')}</div><div className="c-stat-lbl">Тренировок</div></div>
+              <div className="c-stat"><div className="c-stat-val">{c.years}</div><div className="c-stat-lbl">{c.years === 1 ? 'Год' : (c.years < 5 ? 'Года' : 'Лет')}</div></div>
+            </div>
+            <div className="section" style={{padding: '0 18px'}}>
+              <div className="sec-title">О тренере</div>
+              <div className="c-about">{c.about}</div>
+              <div className="c-tags">{c.tags.map(t => <span key={t} className="c-tag">{t}</span>)}</div>
+            </div>
+            <div className="section" style={{padding: '0 4px'}}>
+              <div className="sec-title" style={{padding: '0 18px 10px'}}>Ближайшие тренировки</div>
+              <div className="cards">
+                {upc.length === 0 ? (
+                  <div className="placeholder" style={{padding: '24px'}}><div className="ph-sub">Скоро появятся новые тренировки</div></div>
+                ) : upc.map(t => (
+                  <div key={t.id} className="upcoming" onClick={() => nav.replace('training', { trainingId: t.id })}>
+                    <div className="upc-date"><div className="upc-day">{RU_DAYS_SHORT[(new Date(t.date).getDay()+6)%7].toUpperCase()}</div><div className="upc-num">{t.date.split('-')[2]}</div></div>
+                    <div className="upc-body"><div className="upc-name">{t.name}{t.level ? ` · ${t.level}` : ''}</div><div className="upc-meta">{t.loc}</div></div>
+                    <div className="upc-time">{t.t}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="bottom-bar">
+            <div className="btn-cta-pair">
+              <button className="btn-cta" onClick={() => nav.switchTo('sched')}>Выбрать тренировку</button>
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    }
+
+    /* ========== APP ROUTER ========== */
+    const TAB_SCREENS = { home: 'home', sched: 'schedule', club: 'club', profile: 'profile' };
+    const SCREEN_TO_TAB = { home: 'home', schedule: 'sched', club: 'club', profile: 'profile' };
+    const NO_TAB_BAR = new Set(['training', 'payment', 'coach']);
+
+    function App() {
+      const [theme, setTheme] = useState('light');
+      const [stack, setStack] = useState([{ screen: 'schedule', params: {} }]);
+      const [trainings, setTrainings] = useState(INITIAL_TRAININGS);
+      const [profile, setProfile] = useState({ name:'', phone:'', email:'', tg:'', birth:'' });
+      const [toast, setToast] = useState(null);
+      const [animKey, setAnimKey] = useState(0);
+
+      const top = stack[stack.length - 1];
+
+      const nav = {
+        push: (screen, params = {}) => { setStack(s => [...s, { screen, params }]); setAnimKey(k => k+1); },
+        pop: () => setStack(s => s.length > 1 ? s.slice(0, -1) : s),
+        switchTo: (screen) => { setStack([{ screen, params: {} }]); setAnimKey(k => k+1); },
+        replace: (screen, params = {}) => { setStack(s => [...s.slice(0, -1), { screen, params }]); setAnimKey(k => k+1); },
+      };
+
+      const onBookToggle = (id) => {
+        setTrainings(prev => prev.map(t => {
+          if (t.id !== id) return t;
+          if (t.booked) return { ...t, booked: false, taken: Math.max(0, t.taken - 1) };
+          if (t.taken >= t.total) return t;
+          return { ...t, booked: true, taken: t.taken + 1 };
+        }));
+      };
+      const onBookConfirm = (id) => {
+        setTrainings(prev => prev.map(t => t.id === id ? (t.booked ? t : { ...t, booked: true, taken: Math.min(t.total, t.taken + 1) }) : t));
+        setStack([{ screen: 'schedule', params: {} }]);
+        setAnimKey(k => k+1);
+        setToast('Вы записаны на тренировку');
+        setTimeout(() => setToast(null), 2400);
+      };
+
+      let screenEl;
+      switch (top.screen) {
+        case 'home':     screenEl = <HomeScreen     nav={nav} onScheduleTab={() => nav.switchTo('sched')} />; break;
+        case 'schedule': screenEl = <ScheduleScreen nav={nav} trainings={trainings} onBookToggle={onBookToggle} />; break;
+        case 'club':     screenEl = <ClubScreen     nav={nav} />; break;
+        case 'profile':  screenEl = <ProfileScreen  nav={nav} trainings={trainings} />; break;
+        case 'training': screenEl = <TrainingDetailScreen nav={nav} trainingId={top.params.trainingId} trainings={trainings} onBookToggle={onBookToggle} />; break;
+        case 'payment':  screenEl = <PaymentScreen  nav={nav} trainingId={top.params.trainingId} trainings={trainings} profile={profile} setProfile={setProfile} onBookConfirm={onBookConfirm} />; break;
+        case 'coach':    screenEl = <CoachScreen    nav={nav} coachId={top.params.coachId} trainings={trainings.filter(t => t.coachId === top.params.coachId)} />; break;
+        default: screenEl = null;
+      }
+
+      const showTabBar = !NO_TAB_BAR.has(top.screen);
+      const activeTab = SCREEN_TO_TAB[top.screen] || null;
+      const onTabChange = (tab) => {
+        const target = { home: 'home', sched: 'schedule', club: 'club', profile: 'profile' }[tab];
+        nav.switchTo(target);
+      };
+
+      const fillProfile = () => setProfile({
+        name: 'Вика Шаханина',
+        phone: '+7 905 234 56 78',
+        email: 'vika@nightbc.ru',
+        tg: '@vika_sh',
+        birth: '',
+      });
+      const clearProfile = () => setProfile({ name:'', phone:'', email:'', tg:'', birth:'' });
+      const profileFilled = profile.name && profile.phone && profile.email && profile.tg;
+
+      return (
+        <div className="page">
+          <div className="side">
+            <h3>Тема</h3>
+            <div className="theme-switch">
+              <button className={theme === 'light' ? 'active' : ''} onClick={() => setTheme('light')}>☀ Светлая</button>
+              <button className={theme === 'dark' ? 'active' : ''} onClick={() => setTheme('dark')}>🌙 Тёмная</button>
+            </div>
+
+            <h3>Профиль</h3>
+            <button className="preset-btn" onClick={profileFilled ? clearProfile : fillProfile}>
+              <span className={`dot${profileFilled ? '' : ' off'}`} />
+              {profileFilled ? 'Профиль заполнен — очистить' : 'Заполнить демо-данными'}
+            </button>
+
+            <div className="side-hint">
+              <b>Поток:</b><br/>
+              Расписание → карточка → «Записаться» → оплата → «Оплатить».<br/><br/>
+              Тренер открывается тапом на имя в карточке или из вкладки «Клуб».<br/><br/>
+              Внизу — таб-бар.
+            </div>
+          </div>
+
+          <div className="stage">
+            <div className={`frame theme-${theme}`}>
+              <div className="screen entering" key={animKey}>
+                {screenEl}
+              </div>
+              {showTabBar && <TabBar active={activeTab} onChange={onTabChange} />}
+              {toast && <div className="toast"><div className="toast-icon">✓</div><div className="toast-text">{toast}</div></div>}
+              <div className="home-indicator" />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
