@@ -197,7 +197,7 @@
     .island { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 124px; height: 36px; background: #000; border-radius: 18px; }
 
     /* ============== NAV ============== */
-    .nav { display: flex; align-items: center; gap: 8px; padding: 8px 14px 4px; flex-shrink: 0; }
+    .nav { display: flex; align-items: center; gap: 8px; padding: 8px 16px 4px; flex-shrink: 0; }
     .nav-btn { width: 40px; height: 40px; border-radius: 20px; background: var(--soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text); cursor: pointer; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: background 0.18s, transform 0.1s; position: relative; }
     .filter-dot { position: absolute; top: 2px; right: 2px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--brand); color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg); }
 
@@ -205,10 +205,10 @@
     .sheet-overlay { position: absolute; inset: 0; background: rgba(20,15,35,0.4); display: flex; align-items: flex-end; z-index: 50; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
     .sheet { width: 100%; max-height: 80%; background: var(--bg); border-radius: 24px 24px 0 0; display: flex; flex-direction: column; box-shadow: 0 -20px 60px rgba(0,0,0,0.32); }
     .sheet-grab { width: 36px; height: 4px; background: var(--text-3); opacity: 0.5; border-radius: 2px; margin: 8px auto 4px; }
-    .sheet-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid var(--card-border); }
+    .sheet-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--card-border); }
     .sheet-title { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
     .sheet-clear { background: transparent; border: 0; color: var(--brand-2); font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font); }
-    .sheet-body { overflow-y: auto; padding: 14px 20px 0; flex: 1; }
+    .sheet-body { overflow-y: auto; padding: 14px 16px 0; flex: 1; }
     .sheet-section-title { font-size: 12px; font-weight: 700; color: var(--text-2); letter-spacing: 0.1em; text-transform: uppercase; margin: 8px 0 8px; }
     .sheet-list { display: flex; flex-direction: column; gap: 2px; margin-bottom: 16px; }
     .sheet-row { display: flex; align-items: center; gap: 12px; padding: 10px 8px; background: transparent; border: 0; border-radius: 12px; cursor: pointer; font-family: var(--font); transition: background 0.15s; text-align: left; }
@@ -216,20 +216,20 @@
     .sheet-row.on { background: var(--soft); }
     .sheet-row-name { flex: 1; font-size: 15px; font-weight: 500; color: var(--text); }
     .sheet-check { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; color: var(--success); }
-    .sheet-footer { padding: 14px 20px 24px; border-top: 1px solid var(--card-border); }
+    .sheet-footer { padding: 14px 16px 24px; border-top: 1px solid var(--card-border); }
     .nav-btn:hover { background: var(--soft-2); }
     .nav-btn:active { transform: scale(0.94); }
     .nav-title { flex: 1; text-align: center; font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
 
     /* ============== SEG TABS ============== */
-    .seg { margin: 14px 14px 0; padding: 4px; display: flex; position: relative; background: var(--soft); border: 1px solid var(--border); border-radius: 14px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .seg { margin: 14px 16px 0; padding: 4px; display: flex; position: relative; background: var(--soft); border: 1px solid var(--border); border-radius: 14px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
     .seg-thumb { position: absolute; top: 4px; bottom: 4px; width: calc(50% - 4px); background: var(--soft-2); border-radius: 10px; transition: transform 0.28s cubic-bezier(0.2,0.8,0.2,1); box-shadow: 0 1px 2px rgba(20,15,35,0.08); }
     .seg-thumb.right { transform: translateX(100%); }
     .seg-btn { flex: 1; padding: 9px 12px; background: transparent; border: 0; color: var(--text-2); font-size: 14px; font-weight: 600; letter-spacing: -0.1px; cursor: pointer; border-radius: 10px; transition: color 0.18s; z-index: 1; font-family: var(--font); }
     .seg-btn.active { color: var(--text); }
 
     /* ============== MONTH ROW ============== */
-    .month-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px 8px; }
+    .month-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 8px; }
     .month-title { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; line-height: 1; }
     .month-nav { display: flex; gap: 6px; }
     .icon-btn { width: 36px; height: 36px; background: var(--soft); border: 1px solid var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text); cursor: pointer; transition: background 0.18s, transform 0.1s; }
@@ -250,14 +250,14 @@
     .day.today .day-dot { background: #fff; opacity: 0.9; }
 
     /* ============== SECTION HEAD ============== */
-    .section-head { display: flex; align-items: baseline; justify-content: space-between; padding: 22px 20px 12px; }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; padding: 22px 16px 12px; }
     .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
     .section-meta { font-size: 13px; color: var(--text-3); letter-spacing: -0.08px; font-weight: 500; white-space: nowrap; }
-    .section-head.small { padding: 22px 14px 10px; }
+    .section-head.small { padding: 22px 16px 10px; }
     .section-head.small .section-title { font-size: 11px; font-weight: 700; color: var(--text-2); letter-spacing: 0.12em; text-transform: uppercase; }
 
     /* ============== SCHEDULE CARD ============== */
-    .cards { padding: 0 14px; display: flex; flex-direction: column; gap: 10px; }
+    .cards { padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
     .card { display: grid; grid-template-columns: 1fr auto; column-gap: 14px; row-gap: 10px; padding: 16px; background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); transition: transform 0.12s, background 0.18s; cursor: pointer; }
     .card:hover { background: var(--card-strong); }
     .card:active { transform: scale(0.99); }
@@ -356,14 +356,14 @@
     .gear-note { font-size: 12px; color: var(--text-3); margin-top: 2px; }
 
     /* ============== PAYMENT ============== */
-    .order { margin: 12px 14px 0; padding: 14px 16px; background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; align-items: center; gap: 12px; }
+    .order { margin: 12px 16px 0; padding: 14px 16px; background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; align-items: center; gap: 12px; }
     .order-thumb { width: 48px; height: 48px; border-radius: 14px; background: var(--grad-magenta-bold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: -0.2px; box-shadow: 0 4px 12px rgba(184,71,200,0.3); }
     .order-body { flex: 1; min-width: 0; }
     .order-name { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
     .order-meta { font-size: 12px; color: var(--text-3); margin-top: 3px; letter-spacing: -0.04px; }
     .order-time { font-size: 14px; font-weight: 600; letter-spacing: -0.2px; color: var(--text-2); font-variant-numeric: tabular-nums; }
 
-    .banner { margin: 14px 14px 0; padding: 14px 14px 14px 16px; background: var(--banner-bg); border: 1px solid var(--banner-border); border-radius: 16px; display: flex; align-items: center; gap: 12px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .banner { margin: 14px 16px 0; padding: 14px 16px; background: var(--banner-bg); border: 1px solid var(--banner-border); border-radius: 16px; display: flex; align-items: center; gap: 12px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
     .banner-icon { width: 38px; height: 38px; border-radius: 12px; background: var(--grad-amber); color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(255,126,95,0.32); }
     .banner-text { flex: 1; min-width: 0; }
     .banner-title { font-size: 14px; font-weight: 700; letter-spacing: -0.2px; color: var(--text); }
@@ -374,7 +374,7 @@
     .banner-progress-dot { width: 5px; height: 5px; border-radius: 3px; background: currentColor; opacity: 0.3; }
     .banner-progress-dot.on { opacity: 1; }
 
-    .pay-section { margin: 22px 14px 0; }
+    .pay-section { margin: 22px 16px 0; }
     .pay-section-head { display: flex; align-items: baseline; justify-content: space-between; padding: 0 4px 10px; }
     .pay-section-title { font-size: 11px; font-weight: 700; color: var(--text-2); letter-spacing: 0.12em; text-transform: uppercase; }
     .pay-section-meta { font-size: 12px; color: var(--text-3); font-weight: 500; }
@@ -458,7 +458,7 @@
     .promo-btn { padding: 12px 18px; background: var(--soft-2); color: var(--text); border: 1px solid var(--border-strong); border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font); }
 
     /* ============== PROFILE ============== */
-    .p-card { margin: 12px 14px 0; padding: 16px; display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, rgba(221,88,197,0.10), rgba(114,56,230,0.14)); border: 1px solid rgba(221,88,197,0.22); border-radius: 20px; box-shadow: 0 8px 22px rgba(157,107,255,0.12); cursor: pointer; }
+    .p-card { margin: 12px 16px 0; padding: 16px; display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, rgba(221,88,197,0.10), rgba(114,56,230,0.14)); border: 1px solid rgba(221,88,197,0.22); border-radius: 20px; box-shadow: 0 8px 22px rgba(157,107,255,0.12); cursor: pointer; }
     .theme-dark .p-card { background: linear-gradient(135deg, rgba(221,88,197,0.12), rgba(114,56,230,0.18)); border-color: rgba(221,88,197,0.28); }
     .p-card-avatar-wrap { position: relative; flex-shrink: 0; }
     .p-card-avatar { width: 84px; height: 84px; border-radius: 42px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.5px; box-shadow: 0 8px 22px rgba(157,107,255,0.32); border: 2px solid rgba(255,255,255,0.4); background-size: cover; background-position: center 18%; }
@@ -472,14 +472,14 @@
     .p-card-deposit-val { font-size: 18px; font-weight: 800; letter-spacing: -0.4px; color: var(--success); font-variant-numeric: tabular-nums; }
     .p-card-phone { font-size: 12px; color: var(--text-2); letter-spacing: -0.04px; font-weight: 500; font-variant-numeric: tabular-nums; }
     .p-card-chev { width: 32px; height: 32px; border-radius: 16px; background: var(--soft-2); display: flex; align-items: center; justify-content: center; color: var(--text-2); flex-shrink: 0; }
-    .stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 18px 14px 0; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 18px 16px 0; }
     .stat { padding: 14px 8px; text-align: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; box-shadow: var(--card-shadow); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
     .stat-val { font-size: 18px; font-weight: 700; letter-spacing: -0.4px; line-height: 1; font-variant-numeric: tabular-nums; }
     .stat-val .cur { font-size: 13px; color: var(--text-3); margin-left: 2px; font-weight: 600; }
     .stat-lbl { font-size: 10px; color: var(--text-3); margin-top: 6px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
     .promo-card {
-      margin: 18px 14px 0;
-      padding: 14px 14px 14px 16px;
+      margin: 18px 16px 0;
+      padding: 14px 16px;
       background: var(--grad-card);
       border-radius: 18px;
       color: #fff;
@@ -525,7 +525,7 @@
     .cert-meta { font-size: 12px; opacity: 0.85; margin-top: 4px; }
 
     /* ============== COACH SCREEN ============== */
-    .c-hero { padding: 8px 20px 24px; text-align: center; }
+    .c-hero { padding: 8px 16px 24px; text-align: center; }
     .c-hero-avatar { width: 112px; height: 112px; border-radius: 56px; background: var(--grad); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 38px; font-weight: 700; letter-spacing: -0.5px; box-shadow: 0 12px 40px rgba(221,88,197,0.32); border: 3px solid rgba(255,255,255,0.06); }
     .c-hero-avatar.violet { background: linear-gradient(135deg,#9D6BFF,#4A1DAD); box-shadow: 0 12px 40px rgba(114,56,230,0.32); }
     .c-hero-avatar.mint { background: linear-gradient(135deg,#34D399,#0D9488); box-shadow: 0 12px 40px rgba(16,185,129,0.28); }
@@ -543,15 +543,15 @@
     .c-tag { padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; color: var(--text-2); background: var(--card); border: 1px solid var(--border); }
 
     /* ============== PLACEHOLDER ============== */
-    .placeholder { padding: 60px 24px 24px; text-align: center; }
+    .placeholder { padding: 60px 16px 24px; text-align: center; }
     .ph-icon { width: 72px; height: 72px; border-radius: 24px; background: var(--soft-2); display: inline-flex; align-items: center; justify-content: center; color: var(--text-2); margin-bottom: 18px; }
     .ph-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
     .ph-sub { font-size: 14px; color: var(--text-3); line-height: 1.4; max-width: 280px; margin: 0 auto; }
 
     /* ============== ABONEMENTS CAROUSEL ============== */
-    .abos-row { display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 0 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+    .abos-row { display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 0 16px 4px; scrollbar-width: none; -ms-overflow-style: none; }
     .abos-row::-webkit-scrollbar { display: none; }
-    .abo-card { flex: 0 0 220px; padding: 14px 14px 14px 16px; background: linear-gradient(135deg, rgba(221,88,197,0.10), rgba(114,56,230,0.16)); border: 1px solid rgba(221,88,197,0.22); border-radius: 18px; cursor: pointer; scroll-snap-align: start; }
+    .abo-card { flex: 0 0 220px; padding: 16px; background: linear-gradient(135deg, rgba(221,88,197,0.10), rgba(114,56,230,0.16)); border: 1px solid rgba(221,88,197,0.22); border-radius: 18px; cursor: pointer; scroll-snap-align: start; }
     .theme-dark .abo-card { background: linear-gradient(135deg, rgba(221,88,197,0.12), rgba(114,56,230,0.18)); }
     .abo-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
     .abo-name { font-size: 13px; font-weight: 600; color: var(--text-2); letter-spacing: -0.08px; }
@@ -563,7 +563,7 @@
     .abo-add-label { font-size: 12px; font-weight: 600; }
 
     /* ============== WALLET ============== */
-    .wallet { padding: 18px 14px 0; display: flex; flex-direction: column; gap: 10px; }
+    .wallet { padding: 18px 16px 0; display: flex; flex-direction: column; gap: 10px; }
     .wallet-card {
       padding: 16px;
       background: var(--card); border: 1px solid var(--card-border);
@@ -636,10 +636,10 @@
     .edit-btn-inline:active { transform: scale(0.96); }
 
     /* ============== PROFILE EDIT SCREEN ============== */
-    .edit-section { padding: 18px 14px 0; }
+    .edit-section { padding: 18px 16px 0; }
 
     /* ============== TOPUP / AMOUNT GRID ============== */
-    .amount-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 14px; }
+    .amount-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px; }
     .amount-pill {
       padding: 18px 12px;
       background: var(--card); border: 1px solid var(--card-border);
@@ -659,7 +659,7 @@
     .amount-val { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
     .amount-bonus { font-size: 11px; color: var(--success); font-weight: 600; margin-top: 4px; }
     .balance-display {
-      margin: 12px 14px 0; padding: 16px;
+      margin: 12px 16px 0; padding: 16px;
       background: linear-gradient(135deg, rgba(255,179,71,0.14), rgba(255,126,95,0.18));
       border: 1px solid rgba(255,138,61,0.22);
       border-radius: 18px;
@@ -670,7 +670,7 @@
     .balance-lbl { font-size: 11px; font-weight: 700; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; }
     .balance-val { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-top: 6px; font-variant-numeric: tabular-nums; }
 
-    .home-eyebrow { font-size: 11px; color: var(--text-3); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 18px 20px 4px; }
+    .home-eyebrow { font-size: 11px; color: var(--text-3); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 18px 16px 4px; }
     .home-greeting { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; padding: 0 20px 4px; line-height: 1.15; }
 
     /* Hero */
@@ -684,7 +684,7 @@
     .home-hero-cta { margin-top: 12px; padding: 10px 16px; background: var(--grad); color: #fff; border: 0; border-radius: 999px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font); display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 6px 16px rgba(221,88,197,0.28); }
 
     /* Why badminton — 3 numbers */
-    .why-grid { display: flex; gap: 6px; padding: 0 14px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; -ms-overflow-style: none; scroll-snap-type: x mandatory; }
+    .why-grid { display: flex; gap: 6px; padding: 0 16px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; -ms-overflow-style: none; scroll-snap-type: x mandatory; }
     .why-grid::-webkit-scrollbar { display: none; }
     .why-card { flex: 0 0 140px; padding: 10px; background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; box-shadow: var(--card-shadow); display: flex; flex-direction: column; gap: 2px; scroll-snap-align: start; position: relative; overflow: hidden; }
     .why-card.amber { border-color: rgba(255,138,61,0.32); background: linear-gradient(135deg, rgba(255,179,71,0.12), rgba(255,126,95,0.18)); }
@@ -733,7 +733,7 @@
     .gift-stack .gc3 { left: 44px; bottom: 24px; background: linear-gradient(135deg,#22E6A8,#44D9FF); transform: rotate(14deg); }
 
     /* Shop preview */
-    .shop-row { display: flex; gap: 10px; padding: 0 14px 4px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
+    .shop-row { display: flex; gap: 10px; padding: 0 16px 4px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
     .shop-row::-webkit-scrollbar { display: none; }
     .shop-card { flex: 0 0 170px; background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; box-shadow: var(--card-shadow); overflow: hidden; scroll-snap-align: start; display: flex; flex-direction: column; cursor: pointer; }
     .shop-photo { width: 100%; aspect-ratio: 1 / 1; background-size: cover; background-position: center; background-color: var(--soft); }
@@ -748,7 +748,7 @@
     .shop-card.catalog .shop-link { color: var(--brand-2); font-size: 12px; font-weight: 700; margin-top: 6px; display: inline-flex; align-items: center; gap: 4px; }
 
     /* Reviews */
-    .home-reviews-row { display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 0 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
+    .home-reviews-row { display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 0 16px 4px; scrollbar-width: none; -ms-overflow-style: none; }
     .home-reviews-row::-webkit-scrollbar { display: none; }
     .review-card { flex: 0 0 220px; padding: 12px 14px; background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; box-shadow: var(--card-shadow); scroll-snap-align: start; display: flex; flex-direction: column; gap: 8px; }
     .review-head { display: flex; align-items: center; gap: 8px; }
@@ -994,7 +994,7 @@
             </div>
 
             {/* Why badminton */}
-            <div className="section-head" style={{padding: '16px 20px 8px'}}>
+            <div className="section-head" style={{padding: '16px 16px 8px'}}>
               <div className="section-title">Это просто круто</div>
               <div className="section-meta">3 причины</div>
             </div>
@@ -1020,7 +1020,7 @@
             </div>
 
             {/* Formats */}
-            <div className="section-head" style={{padding: '16px 20px 8px', alignItems: 'flex-end'}}>
+            <div className="section-head" style={{padding: '16px 16px 8px', alignItems: 'flex-end'}}>
               <div className="section-title">Выбери, как тренироваться</div>
               <div className="section-meta">4 формата</div>
             </div>
@@ -1037,7 +1037,7 @@
             </div>
 
             {/* Tech / Robot */}
-            <div className="section-head" style={{padding: '16px 20px 8px'}}>
+            <div className="section-head" style={{padding: '16px 16px 8px'}}>
               <div className="section-title">Технологии на корте</div>
               <div className="section-meta">SIBOASI · робот</div>
             </div>
@@ -1056,7 +1056,7 @@
             </div>
 
             {/* Gift cert */}
-            <div className="section-head" style={{padding: '16px 20px 8px'}}>
+            <div className="section-head" style={{padding: '16px 16px 8px'}}>
               <div className="section-title">Подари бадминтон</div>
               <div className="section-meta">от 1 500 ₽</div>
             </div>
@@ -1075,7 +1075,7 @@
             </div>
 
             {/* Shop */}
-            <div className="section-head" style={{padding: '16px 20px 8px'}}>
+            <div className="section-head" style={{padding: '16px 16px 8px'}}>
               <div className="section-title">Бадминтонная витрина</div>
               <div className="section-meta">Ракетки · воланы</div>
             </div>
@@ -1105,7 +1105,7 @@
             </div>
 
             {/* Reviews — last */}
-            <div className="section-head" style={{padding: '16px 20px 8px'}}>
+            <div className="section-head" style={{padding: '16px 16px 8px'}}>
               <div className="section-title">Что говорят</div>
               <a className="section-meta" href="https://yandex.ru/maps/org/badminton_klub_nayt/?utm_source=app" target="_blank" rel="noopener noreferrer" style={{color: 'var(--brand)', cursor: 'pointer', textDecoration: 'none'}}>Посмотреть все →</a>
             </div>
@@ -1142,7 +1142,7 @@
             <div style={{width: 40}} />
           </div>
           <div className="scroll">
-            <div className="section-head" style={{padding: '8px 20px 8px'}}>
+            <div className="section-head" style={{padding: '8px 16px 8px'}}>
               <div className="section-title">Тренеры</div>
               <div className="section-meta">{list.length} человек</div>
             </div>
@@ -1158,7 +1158,7 @@
                 </div>
               ))}
             </div>
-            <div className="section-head" style={{padding: '20px 20px 8px'}}>
+            <div className="section-head" style={{padding: '20px 16px 8px'}}>
               <div className="section-title">Локации</div>
               <div className="section-meta">2 зала</div>
             </div>
@@ -1284,12 +1284,12 @@
                 );
               })}
             </div>
-            <div className="section-head" style={{padding: '14px 20px 8px'}}>
+            <div className="section-head" style={{padding: '14px 16px 8px'}}>
               <div className="section-title" style={{fontSize: 15}}>{isTodaySelected ? 'Сегодня' : `${selected.getDate()} ${RU_MONTHS[selected.getMonth()].toLowerCase()}`}</div>
               <div className="section-meta">{filtered.length === 0 ? '— нет' : `${filtered.length} ${filtered.length === 1 ? 'тренировка' : (filtered.length < 5 ? 'тренировки' : 'тренировок')}`}</div>
             </div>
             {filtered.length === 0 ? (
-              <div className="placeholder" style={{padding: '32px 24px'}}>
+              <div className="placeholder" style={{padding: '32px 16px'}}>
                 <div className="ph-title">{view === 'mine' ? 'Записей пока нет' : 'Тренировок нет'}</div>
                 <div className="ph-sub">{view === 'mine' ? 'Запишитесь — появится здесь' : 'На эту дату ничего не запланировано'}</div>
               </div>
@@ -1703,7 +1703,7 @@
               <div className="p-card-chev">{ICN.chev}</div>
             </div>
 
-            <div className="section-head small" style={{padding: '18px 20px 8px'}}>
+            <div className="section-head small" style={{padding: '18px 16px 8px'}}>
               <div className="section-title">{abonements.length > 1 ? 'Мои абонементы' : 'Абонемент'}</div>
               <div className="section-meta">{abonements.length}</div>
             </div>
@@ -1823,7 +1823,7 @@
             <div style={{width: 40}} />
           </div>
           <div className="scroll">
-            <div className="section-head small" style={{padding: '16px 20px 8px'}}>
+            <div className="section-head small" style={{padding: '16px 16px 8px'}}>
               <div className="section-title">Способы оплаты</div>
               <div className="section-meta" style={{color: 'var(--brand)', cursor: 'pointer'}}>+ Добавить</div>
             </div>
@@ -2009,16 +2009,16 @@
               <div className="c-stat"><div className="c-stat-val">{c.trainings.toLocaleString('ru-RU')}</div><div className="c-stat-lbl">Тренировок</div></div>
               <div className="c-stat"><div className="c-stat-val">{c.years}</div><div className="c-stat-lbl">{c.years === 1 ? 'Год' : (c.years < 5 ? 'Года' : 'Лет')}</div></div>
             </div>
-            <div className="section" style={{padding: '0 18px'}}>
+            <div className="section" style={{padding: '0 16px'}}>
               <div className="sec-title">О тренере</div>
               <div className="c-about">{c.about}</div>
               <div className="c-tags">{c.tags.map(t => <span key={t} className="c-tag">{t}</span>)}</div>
             </div>
             <div className="section" style={{padding: '0 4px'}}>
-              <div className="sec-title" style={{padding: '0 18px 10px'}}>Ближайшие тренировки</div>
+              <div className="sec-title" style={{padding: '0 16px 10px'}}>Ближайшие тренировки</div>
               <div className="cards">
                 {upc.length === 0 ? (
-                  <div className="placeholder" style={{padding: '24px'}}><div className="ph-sub">Скоро появятся новые тренировки</div></div>
+                  <div className="placeholder" style={{padding: '24px 16px'}}><div className="ph-sub">Скоро появятся новые тренировки</div></div>
                 ) : upc.map(t => (
                   <div key={t.id} className="upcoming" onClick={() => nav.replace('training', { trainingId: t.id })}>
                     <div className="upc-date"><div className="upc-day">{RU_DAYS_SHORT[(new Date(t.date).getDay()+6)%7].toUpperCase()}</div><div className="upc-num">{t.date.split('-')[2]}</div></div>
