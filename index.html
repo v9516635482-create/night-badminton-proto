@@ -551,7 +551,7 @@
     /* ============== ABONEMENTS CAROUSEL ============== */
     .abos-row { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 14px 4px; scrollbar-width: none; -ms-overflow-style: none; }
     .abos-row::-webkit-scrollbar { display: none; }
-    .abo-card { flex: 0 0 220px; padding: 14px; background: linear-gradient(135deg, rgba(221,88,197,0.10), rgba(114,56,230,0.16)); border: 1px solid rgba(221,88,197,0.22); border-radius: 18px; cursor: pointer; scroll-snap-align: start; }
+    .abo-card { flex: 0 0 220px; padding: 14px 14px 14px 16px; background: linear-gradient(135deg, rgba(221,88,197,0.10), rgba(114,56,230,0.16)); border: 1px solid rgba(221,88,197,0.22); border-radius: 18px; cursor: pointer; scroll-snap-align: start; }
     .theme-dark .abo-card { background: linear-gradient(135deg, rgba(221,88,197,0.12), rgba(114,56,230,0.18)); }
     .abo-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
     .abo-name { font-size: 13px; font-weight: 600; color: var(--text-2); letter-spacing: -0.08px; }
@@ -2049,7 +2049,7 @@
     ];
 
     function App() {
-      const [theme, setTheme] = useState('light');
+      const [theme, setTheme] = useState('dark');
       const [stack, setStack] = useState([{ screen: 'schedule', params: {} }]);
       const [trainings, setTrainings] = useState(INITIAL_TRAININGS);
       const [profile, setProfile] = useState({ name:'', phone:'+7 (951) 663-54-82', email:'', tg:'', birth:'', photo: USER_PHOTO });
