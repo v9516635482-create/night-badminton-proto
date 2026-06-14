@@ -164,18 +164,17 @@
 
     /* Mobile: full-screen, no side panel, no phone bezel */
     @media (max-width: 768px) {
-      html, body { background: var(--bg); height: 100%; }
-      body { padding: 0; min-height: 100vh; align-items: stretch; }
-      .page { width: 100%; height: 100vh; gap: 0; align-items: stretch; }
-      .side { display: none; }
+      html, body { background: var(--bg); }
+      body { padding: 0 !important; display: block !important; min-height: 100vh; }
+      .page { display: block !important; gap: 0; width: 100vw; }
+      .side { display: none !important; }
       .frame {
-        width: 100%; height: 100vh; min-height: 100vh; max-width: 100%; max-height: none;
-        border-radius: 0; box-shadow: none;
+        width: 100vw !important; height: 100vh !important;
+        max-width: 100vw; max-height: 100vh;
+        border-radius: 0 !important; box-shadow: none !important;
       }
-      .status-bar { display: none; padding-top: env(safe-area-inset-top); }
-      .nav, .scroll { padding-top: max(env(safe-area-inset-top), 12px); }
-      .scroll { padding-top: 0; }
-      .bottom-bar { padding-bottom: max(env(safe-area-inset-bottom), 16px); }
+      .status-bar { padding-top: env(safe-area-inset-top); }
+      .bottom-bar { padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
     }
 
     /* SCREEN — full size inside frame */
